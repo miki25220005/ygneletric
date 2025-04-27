@@ -191,7 +191,7 @@ function updateDisplay() {
     // Update status
     const hasPower = hasElectricity(group, now);
     document.getElementById("status").className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? (isDarkMode ? 'bg-blue-900 text-blue-200' : 'bg-blue-50 text-blue-800') : (isDarkMode ? 'bg-red-900 text-red-200' : 'bg-red-50 text-red-800')}`;
-    document.getElementById("status").innerHTML = `Group ${group} at ${now.toLocaleString()}:<br>` +
+    document.getElementById("status-text").innerHTML = `Group ${group} at ${now.toLocaleString()}:<br>` +
         (hasPower ? "Electricity is Available!" : "No Electricity");
 
     // Update schedule
@@ -206,10 +206,10 @@ function updateCountdown(group) {
     const { timeUntil, isPowerOn } = getCountdown(group);
     const timerDiv = document.getElementById("timer");
     const timerProgress = document.getElementById("timer-progress");
-    const countdownTitle = document.getElementById("countdown-title");
+    const countdownTitleText = document.getElementById("countdown-title-text");
 
     // Update countdown title based on whether power is on or off
-    countdownTitle.textContent = isPowerOn ? "Time Until Electricity Turns Off" : "Time Until Next Electricity Slot";
+    countdownTitleText.textContent = isPowerOn ? "Time Until Electricity Turns Off" : "Time Until Next Electricity Slot";
 
     const { hours, minutes, seconds, totalSeconds } = timeUntil;
     timerDiv.innerHTML = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
