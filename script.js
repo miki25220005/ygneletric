@@ -74,17 +74,20 @@ function hasElectricity(group, dateTime) {
     return false;
 }
 
-// Function to get today's schedule for a group
-function getTodaySchedule(group) {
-    const today = getMyanmarTime();
-    const schedule = getScheduleForDate(today);
+// Function to get the schedule for a group on a specific day
+function getScheduleForDay(group, targetDate) {
+    const schedule = getScheduleForDate(targetDate);
     let result = "";
     for (let i = 0; i < timeSlots.length; i++) {
         const slot = timeSlots[i];
         const groups = schedule[i].split("+");
         const hasPower = groups.includes(group);
         const isDarkMode = window.location.pathname.includes("index-dark.html");
-        result += `<li class="p-2 rounded-md ${hasPower ? (isDarkMode ? 'bg-blue-900 text-blue-200' : 'bg-blue-50 text-blue-800') : (isDarkMode ? 'bg-red-900 text-red-200' : 'bg-red-50 text-red-800')}">${slot.start} - ${slot.end}: ${hasPower ? 'Electricity Available' : 'No Electricity'}</li>`;
+        if (isDarkMode) {
+            result += `<li class="${hasPower ? 'schedule-on' : 'schedule-off'} p-2 rounded-md">${slot.start} - ${slot.end}: ${hasPower ? 'Electricity Available' : 'No Electricity'}</li>`;
+        } else {
+            result += `<li class="p-2 rounded-md ${hasPower ? 'bg-blue-50 text-blue-800' : 'bg-red-50 text-red-800'}">${slot.start} - ${slot.end}: ${hasPower ? 'Electricity Available' : 'No Electricity'}</li>`;
+        }
     }
     return result;
 }
@@ -188,16 +191,21 @@ function updateDisplay() {
     const now = getMyanmarTime();
     const isDarkMode = window.location.pathname.includes("index-dark.html");
 
-    // Update status
+    // Update status (always based on current time)
     const hasPower = hasElectricity(group, now);
-    document.getElementById("status").className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? (isDarkMode ? 'bg-blue-900 text-blue-200' : 'bg-blue-50 text-blue-800') : (isDarkMode ? 'bg-red-900 text-red-200' : 'bg-red-50 text-red-800')}`;
+    const statusDiv = document.getElementById("status");
+    if (isDarkMode) {
+        statusDiv.className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? 'status-on' : 'status-off'}`;
+    } else {
+        statusDiv.className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? 'bg-blue-50 text-blue-800' : 'bg-red-50 text-red-800'}`;
+    }
     document.getElementById("status-text").innerHTML = `Group ${group} at ${now.toLocaleString()}:<br>` +
         (hasPower ? "Electricity is Available!" : "No Electricity");
 
-    // Update schedule
-    document.getElementById("schedule").innerHTML = getTodaySchedule(group);
+    // Update schedule for the selected day
+    updateSchedule(group);
 
-    // Update countdown
+    // Update countdown (always based on current time)
     updateCountdown(group);
 }
 
@@ -220,7 +228,30 @@ function updateCountdown(group) {
     timerProgress.style.width = `${progressPercentage}%`;
 }
 
-// Initialize group selection
+// Track the currently selected day (0 = today, -1 = yesterday, 1 = tomorrow)
+let dayOffset = 0;
+
+// Function to update the schedule for the selected day
+function updateSchedule(group) {
+    const now = getMyanmarTime();
+    const targetDate = new Date(now);
+    targetDate.setDate(now.getDate() + dayOffset);
+
+    // Update schedule title
+    const scheduleTitle = document.getElementById("schedule-title");
+    if (dayOffset === 0) {
+        scheduleTitle.textContent = "Today's Schedule";
+    } else if (dayOffset === -1) {
+        scheduleTitle.textContent = "Yesterday's Schedule";
+    } else if (dayOffset === 1) {
+        scheduleTitle.textContent = "Tomorrow's Schedule";
+    }
+
+    // Update schedule content
+    document.getElementById("schedule").innerHTML = getScheduleForDay(group, targetDate);
+}
+
+// Initialize group selection and day navigation
 window.onload = () => {
     const savedGroup = localStorage.getItem("selectedGroup");
     const groupModal = document.getElementById("group-modal");
@@ -228,6 +259,8 @@ window.onload = () => {
     const groupSelect = document.getElementById("group-select");
     const confirmGroupBtn = document.getElementById("confirm-group");
     const groupDropdown = document.getElementById("group");
+    const prevDayBtn = document.getElementById("prev-day");
+    const nextDayBtn = document.getElementById("next-day");
 
     if (savedGroup) {
         // If a group is already saved, show the main content
@@ -250,6 +283,21 @@ window.onload = () => {
             mainContent.classList.remove("hidden");
             groupDropdown.value = selectedGroup;
             updateDisplay();
+        }
+    });
+
+    // Handle day navigation
+    prevDayBtn.addEventListener("click", () => {
+        if (dayOffset > -1) {
+            dayOffset--;
+            updateSchedule(groupDropdown.value);
+        }
+    });
+
+    nextDayBtn.addEventListener("click", () => {
+        if (dayOffset < 1) {
+            dayOffset++;
+            updateSchedule(groupDropdown.value);
         }
     });
 
