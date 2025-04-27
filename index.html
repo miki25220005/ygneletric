@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangon Electricity Schedule Checker (Light Mode)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center transition-all duration-500 bg-gray-100">
+    <a href="index-dark.html" class="absolute top-5 right-5 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110">🌙</a>
+
+    <!-- Group Selection Modal -->
+    <div id="group-modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
+            <h2 class="text-xl font-semibold text-center mb-4 text-gray-900">Select Your Group</h2>
+            <select id="group-select" class="w-full p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="" disabled selected>Select a group</option>
+                <option value="A">Group A</option>
+                <option value="B">Group B</option>
+                <option value="C">Group C</option>
+            </select>
+            <button id="confirm-group" class="mt-4 w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Confirm</button>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden Initially) -->
+    <div id="main-content" class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg hidden fade-in">
+        <h1 class="text-2xl font-semibold text-center mb-6 text-gray-900">Yangon Electricity Checker</h1>
+
+        <div class="flex justify-center mb-6">
+            <select id="group" onchange="updateDisplay()" class="p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="A">Group A</option>
+                <option value="B">Group B</option>
+                <option value="C">Group C</option>
+            </select>
+        </div>
+
+        <div id="status" class="text-center p-4 rounded-lg mb-6 text-sm font-medium"></div>
+
+        <div class="mb-6">
+            <h3 id="countdown-title" class="text-center text-sm font-medium text-gray-600 mb-2"></h3>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div id="timer-progress" class="h-full bg-blue-500 rounded-full transition-all duration-1000"></div>
+            </div>
+            <div id="timer" class="text-center mt-2 text-lg font-medium text-gray-900">00:00:00</div>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="text-center text-sm font-medium text-gray-600 mb-3">Today's Schedule</h3>
+            <ul id="schedule" class="space-y-2 text-sm"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
