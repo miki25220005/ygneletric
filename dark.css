@@ -1,0 +1,118 @@
+/* dark.css - Custom Dark Mode Styles */
+
+body {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+#group-modal > div {
+    background-color: #2d3748;
+}
+
+#group-modal select {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+#group-modal select:focus {
+    border-color: #63b3ed;
+    outline: none;
+    box-shadow: 0 0 0 2px #63b3ed;
+}
+
+#group-modal button {
+    background-color: #2b6cb0;
+}
+
+#group-modal button:hover {
+    background-color: #3182ce;
+}
+
+#main-content {
+    background-color: #2d3748;
+}
+
+#main-content h1 {
+    color: #e2e8f0;
+}
+
+#main-content select {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+#main-content select:focus {
+    border-color: #63b3ed;
+    outline: none;
+    box-shadow: 0 0 0 2px #63b3ed;
+}
+
+#status.status-on {
+    background-color: #2b6cb0;
+    color: #bfdbfe;
+}
+
+#status.status-off {
+    background-color: #9b2c2c;
+    color: #feb2b2;
+}
+
+#status i {
+    color: #e2e8f0;
+}
+
+#countdown-title {
+    color: #a0aec0;
+}
+
+#countdown-title i {
+    color: #a0aec0;
+}
+
+#timer-progress-container {
+    background-color: #4a5568;
+}
+
+#timer-progress {
+    background-color: #63b3ed;
+}
+
+#timer {
+    color: #e2e8f0;
+}
+
+#schedule-container {
+    background-color: #4a5568;
+}
+
+#schedule-container h3 {
+    color: #a0aec0;
+}
+
+#schedule-container button {
+    color: #a0aec0;
+}
+
+#schedule-container button:hover {
+    color: #e2e8f0;
+}
+
+#schedule li.schedule-on {
+    background-color: #2b6cb0;
+    color: #bfdbfe;
+}
+
+#schedule li.schedule-off {
+    background-color: #9b2c2c;
+    color: #feb2b2;
+}
+
+a i {
+    color: #e2e8f0;
+}
+
+footer {
+    color: #a0aec0;
+}
