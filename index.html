@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yangon Electricity Schedule Checker (Light Mode)</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Yangon Electricity Schedule Checker (Auto Dark/Light)</title>
+
+    <!-- Tailwind CSS -->
+    <script>
+      tailwind.config = {
+        darkMode: 'media',
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -18,31 +26,32 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center transition-all duration-500 bg-gray-100">
-    <a href="index-dark.html" class="absolute top-5 right-5 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110 text-gray-900">
-        <i class="fas fa-moon"></i>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-all duration-500">
+    <a href="#" class="absolute top-5 right-5 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110 text-gray-900 dark:text-gray-100">
+        <i class="fas fa-moon dark:fa-sun"></i>
     </a>
 
     <!-- Group Selection Modal -->
     <div id="group-modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
-            <h2 class="text-xl font-semibold text-center mb-4 text-gray-900">Select Your Group</h2>
-            <select id="group-select" class="w-full p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-sm">
+            <h2 class="text-xl font-semibold text-center mb-4 text-gray-900 dark:text-gray-100">Select Your Group</h2>
+            <select id="group-select" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500">
                 <option value="" disabled selected>Select a group</option>
                 <option value="A">Group A</option>
                 <option value="B">Group B</option>
                 <option value="C">Group C</option>
             </select>
-            <button id="confirm-group" class="mt-4 w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Confirm</button>
+            <button id="confirm-group" class="mt-4 w-full p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">Confirm</button>
         </div>
     </div>
 
-    <!-- Main Content (Hidden Initially) -->
-    <div id="main-content" class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg hidden fade-in">
-        <h1 class="text-2xl font-semibold text-center mb-6 text-gray-900">Yangon Electricity Checker</h1>
+    <!-- Main Content -->
+    <div id="main-content" class="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hidden fade-in">
+        <h1 class="text-2xl font-semibold text-center mb-6 text-gray-900 dark:text-gray-100">Yangon Electricity Checker</h1>
 
         <div class="flex justify-center mb-6">
-            <select id="group" onchange="updateDisplay()" class="p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <select id="group" onchange="updateDisplay()" class="p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
                 <option value="A">Group A</option>
                 <option value="B">Group B</option>
                 <option value="C">Group C</option>
@@ -50,36 +59,35 @@
         </div>
 
         <div id="status" class="text-center p-4 rounded-lg mb-6 text-sm font-medium">
-            <i class="fas fa-bolt mr-2 text-gray-900"></i>
+            <i class="fas fa-bolt mr-2"></i>
             <span id="status-text"></span>
         </div>
 
         <div class="mb-6">
-            <h3 id="countdown-title" class="text-center text-sm font-medium text-gray-600 mb-2">
+            <h3 id="countdown-title" class="text-center text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
                 <i class="fas fa-clock mr-2"></i>
                 <span id="countdown-title-text"></span>
             </h3>
-            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                 <div id="timer-progress" class="h-full bg-blue-500 rounded-full transition-all duration-1000"></div>
             </div>
-            <div id="timer" class="text-center mt-2 text-lg font-medium text-gray-900">00:00:00</div>
+            <div id="timer" class="text-center mt-2 text-lg font-medium text-gray-900 dark:text-gray-100">00:00:00</div>
         </div>
 
-        <div class="bg-gray-50 p-4 rounded-lg">
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
             <div class="flex justify-between items-center mb-3">
-                <button id="prev-day" class="text-gray-600 hover:text-gray-900">
+                <button id="prev-day" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">
                     <i class="fas fa-arrow-left text-lg"></i>
                 </button>
-                <h3 id="schedule-title" class="text-center text-sm font-medium text-gray-600"></h3>
-                <button id="next-day" class="text-gray-600 hover:text-gray-900">
+                <h3 id="schedule-title" class="text-center text-sm font-medium text-gray-600 dark:text-gray-300"></h3>
+                <button id="next-day" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">
                     <i class="fas fa-arrow-right text-lg"></i>
                 </button>
             </div>
             <ul id="schedule" class="space-y-2 text-sm"></ul>
         </div>
 
-        <!-- Footer with Copyright Notice -->
-        <footer class="mt-6 text-center text-sm text-gray-600">
+        <footer class="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
             Coding by MICKEY © 2025. All rights reserved.
         </footer>
     </div>
