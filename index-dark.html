@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yangon Electricity Schedule Checker (Dark Mode)</title>
-
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN (for utility classes like flex, padding, etc.) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom Dark Mode CSS -->
-    <link rel="stylesheet" href="dark.css">
-
     <style>
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -22,9 +16,100 @@
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
+        /* Dark Mode Colors */
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        #group-modal > div {
+            background-color: #2d3748;
+        }
+        #group-modal select {
+            background-color: #4a5568;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+        #group-modal select:focus {
+            border-color: #63b3ed;
+            outline: none;
+            box-shadow: 0 0 0 2px #63b3ed;
+        }
+        #group-modal button {
+            background-color: #2b6cb0;
+        }
+        #group-modal button:hover {
+            background-color: #3182ce;
+        }
+        #main-content {
+            background-color: #2d3748;
+        }
+        #main-content h1 {
+            color: #e2e8f0;
+        }
+        #main-content select {
+            background-color: #4a5568;
+            color: #e2e8f0;
+            border-color: #4a5568;
+        }
+        #main-content select:focus {
+            border-color: #63b3ed;
+            outline: none;
+            box-shadow: 0 0 0 2px #63b3ed;
+        }
+        #status.status-on {
+            background-color: #2b6cb0;
+            color: #bfdbfe;
+        }
+        #status.status-off {
+            background-color: #9b2c2c;
+            color: #feb2b2;
+        }
+        #status i {
+            color: #e2e8f0;
+        }
+        #countdown-title {
+            color: #a0aec0;
+        }
+        #countdown-title i {
+            color: #a0aec0;
+        }
+        #timer-progress-container {
+            background-color: #4a5568;
+        }
+        #timer-progress {
+            background-color: #63b3ed;
+        }
+        #timer {
+            color: #e2e8f0;
+        }
+        #schedule-container {
+            background-color: #4a5568;
+        }
+        #schedule-container h3 {
+            color: #a0aec0;
+        }
+        #schedule-container button {
+            color: #a0aec0;
+        }
+        #schedule-container button:hover {
+            color: #e2e8f0;
+        }
+        #schedule li.schedule-on {
+            background-color: #2b6cb0;
+            color: #bfdbfe;
+        }
+        #schedule li.schedule-off {
+            background-color: #9b2c2c;
+            color: #feb2b2;
+        }
+        a i {
+            color: #e2e8f0;
+        }
+        footer {
+            color: #a0aec0;
+        }
     </style>
 </head>
-
 <body class="min-h-screen flex items-center justify-center transition-all duration-500">
     <a href="index.html" class="absolute top-5 right-5 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110">
         <i class="fas fa-sun"></i>
@@ -44,7 +129,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content (Hidden Initially) -->
     <div id="main-content" class="w-full max-w-md p-6 rounded-xl shadow-lg hidden fade-in">
         <h1 class="text-2xl font-semibold text-center mb-6">Yangon Electricity Checker</h1>
 
@@ -74,17 +159,18 @@
 
         <div id="schedule-container" class="p-4 rounded-lg">
             <div class="flex justify-between items-center mb-3">
-                <button id="prev-day">
+                <button id="prev-day" class="">
                     <i class="fas fa-arrow-left text-lg"></i>
                 </button>
                 <h3 id="schedule-title" class="text-center text-sm font-medium"></h3>
-                <button id="next-day">
+                <button id="next-day" class="">
                     <i class="fas fa-arrow-right text-lg"></i>
                 </button>
             </div>
             <ul id="schedule" class="space-y-2 text-sm"></ul>
         </div>
 
+        <!-- Footer with Copyright Notice -->
         <footer class="mt-6 text-center text-sm">
             Coding by MICKEY © 2025. All rights reserved.
         </footer>
