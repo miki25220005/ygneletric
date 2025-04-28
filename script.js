@@ -195,12 +195,16 @@ function updateDisplay() {
     const hasPower = hasElectricity(group, now);
     const statusDiv = document.getElementById("status");
     if (isDarkMode) {
-        statusDiv.className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? 'status-on' : 'status-off'}`;
+        statusDiv.className = `text-center p-4 rounded-lg mb-6 text-sm font-medium border border-gray-400 ${hasPower ? 'status-on' : 'status-off'}`;
     } else {
         statusDiv.className = `text-center p-4 rounded-lg mb-6 text-sm font-medium ${hasPower ? 'bg-blue-50 text-blue-800' : 'bg-red-50 text-red-800'}`;
     }
-    document.getElementById("status-text").innerHTML = `Group ${group} at ${now.toLocaleString()}:<br>` +
+    const statusText = `Group ${group} at ${now.toLocaleString()}:<br>` +
         (hasPower ? "Electricity is Available!" : "No Electricity");
+    document.getElementById("status-text").innerHTML = statusText;
+
+    // Save the status to localStorage for offline use
+    localStorage.setItem('lastStatus', statusText);
 
     // Update schedule for the selected day
     updateSchedule(group);
@@ -220,7 +224,13 @@ function updateCountdown(group) {
     countdownTitleText.textContent = isPowerOn ? "Time Until Electricity Turns Off" : "Time Until Next Electricity Slot";
 
     const { hours, minutes, seconds, totalSeconds } = timeUntil;
-    timerDiv.innerHTML = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    const timerText = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    timerDiv.innerHTML = timerText;
+
+    // Save the countdown state to localStorage
+    localStorage.setItem('lastCountdownTitle', countdownTitleText.textContent);
+    localStorage.setItem('lastTimer', timerText);
+    localStorage.setItem('lastProgress', ((totalSlotDuration - totalSeconds) / totalSlotDuration) * 100);
 
     // Update progress bar
     const totalSlotDuration = isPowerOn ? (4 * 60 * 60) : (12 * 60 * 60); // 4 hours if on (slot duration), 12 hours if off (max wait)
@@ -248,7 +258,12 @@ function updateSchedule(group) {
     }
 
     // Update schedule content
-    document.getElementById("schedule").innerHTML = getScheduleForDay(group, targetDate);
+    const scheduleContent = getScheduleForDay(group, targetDate);
+    document.getElementById("schedule").innerHTML = scheduleContent;
+
+    // Save the schedule to localStorage
+    localStorage.setItem('lastScheduleTitle', scheduleTitle.textContent);
+    localStorage.setItem('lastSchedule', scheduleContent);
 }
 
 // Initialize group selection and day navigation
@@ -267,6 +282,17 @@ window.onload = () => {
         groupModal.classList.add("hidden");
         mainContent.classList.remove("hidden");
         groupDropdown.value = savedGroup;
+
+        // Restore last known state if offline
+        if (!navigator.onLine) {
+            document.getElementById("status-text").innerHTML = localStorage.getItem('lastStatus') || 'Please connect to the internet to load the app.';
+            document.getElementById("countdown-title-text").textContent = localStorage.getItem('lastCountdownTitle') || '';
+            document.getElementById("timer").innerHTML = localStorage.getItem('lastTimer') || '00:00:00';
+            document.getElementById("timer-progress").style.width = `${localStorage.getItem('lastProgress') || 0}%`;
+            document.getElementById("schedule-title").textContent = localStorage.getItem('lastScheduleTitle') || '';
+            document.getElementById("schedule").innerHTML = localStorage.getItem('lastSchedule') || '';
+        }
+
         updateDisplay();
     } else {
         // Show the group selection modal
