@@ -21,6 +21,15 @@
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
+        /* Countdown tick animation */
+        @keyframes countdownTick {
+            0% { opacity: 0.7; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .countdown-tick {
+            animation: countdownTick 0.3s ease-in-out;
+        }
         /* Dark Mode Colors */
         body {
             background-color: #1a202c;
@@ -191,9 +200,11 @@
                         console.log('Service Worker registered with scope:', registration.scope);
                     })
                     .catch(error => {
-                        console.log('Service Worker registration failed:', error);
+                        console.error('Service Worker registration failed:', error);
                     });
             });
+        } else {
+            console.error('Service Worker not supported in this browser.');
         }
     </script>
 </body>

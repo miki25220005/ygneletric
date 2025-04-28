@@ -227,15 +227,20 @@ function updateCountdown(group) {
     const timerText = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     timerDiv.innerHTML = timerText;
 
+    // Add animation class to timer for visual effect
+    timerDiv.classList.remove("countdown-tick");
+    void timerDiv.offsetWidth; // Trigger reflow to restart animation
+    timerDiv.classList.add("countdown-tick");
+
     // Save the countdown state to localStorage
     localStorage.setItem('lastCountdownTitle', countdownTitleText.textContent);
     localStorage.setItem('lastTimer', timerText);
-    localStorage.setItem('lastProgress', ((totalSlotDuration - totalSeconds) / totalSlotDuration) * 100);
 
     // Update progress bar
     const totalSlotDuration = isPowerOn ? (4 * 60 * 60) : (12 * 60 * 60); // 4 hours if on (slot duration), 12 hours if off (max wait)
     const progressPercentage = ((totalSlotDuration - totalSeconds) / totalSlotDuration) * 100;
     timerProgress.style.width = `${progressPercentage}%`;
+    localStorage.setItem('lastProgress', progressPercentage);
 }
 
 // Track the currently selected day (0 = today, -1 = yesterday, 1 = tomorrow)
@@ -329,7 +334,8 @@ window.onload = () => {
 
     // Update display every second for countdown
     setInterval(() => {
-        if (!groupModal.classList.contains("hidden")) return; // Don't update if modal is visible
-        updateDisplay();
+        if (groupModal.classList.contains("hidden")) {
+            updateDisplay();
+        }
     }, 1000);
 };
