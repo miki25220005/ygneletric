@@ -148,6 +148,12 @@ const I18N = {
                 <li>Wait 3-5 minutes after electricity returns before turning heavy appliances back on.</li>
                 <li>In case of fallen electric wires or transformer sparks, do not approach within 10 meters and contact 1950 immediately.</li>
             </ul>
+            <hr style="border:none; border-top:1px solid var(--border-subtle); margin:0.75rem 0;">
+            <p><strong>Developer & Project Contact:</strong></p>
+            <p style="margin-top:0.35rem; font-size:0.875rem;">
+                Created & Maintained by <strong>Thant Zin Htoo</strong><br>
+                Website & Portfolio: <a href="http://thantzinhtoodev.unaux.com/" target="_blank" rel="noopener noreferrer" style="color:var(--brand-primary); font-weight:600; text-decoration:underline;">thantzinhtoodev.unaux.com</a>
+            </p>
         `,
         settingsTitle: "Settings & Data Privacy",
         settingsBody: `
@@ -247,6 +253,12 @@ const I18N = {
                 <li>မီးပြန်လာပြီး ၃ မိနစ်မှ ၅ မိနစ်ခန့် အချိန်စောင့်ဆိုင်းပြီးမှသာ အကြီးစားလျှပ်စစ်ပစ္စည်းများကို ပြန်လည်ဖွင့်သင့်ပါသည်။</li>
                 <li>ဓာတ်ကြိုးပြတ်ကျခြင်း၊ ထရန်စဖော်မာ မီးပွားထွက်ခြင်းများ တွေ့ရှိပါက အနီးသို့ မကပ်ဘဲ ၁၉၅၀ သို့ ချက်ချင်း ဆက်သွယ်အကြောင်းကြားပါ။</li>
             </ul>
+            <hr style="border:none; border-top:1px solid var(--border-subtle); margin:0.75rem 0;">
+            <p><strong>ဝဘ်ဆိုက် ရေးသားသူ ဆက်သွယ်ရန် (Developer):</strong></p>
+            <p style="margin-top:0.35rem; font-size:0.875rem;">
+                ရေးသားဖန်တီးသူ: <strong>သန့်ဇင်ထူး (Thant Zin Htoo)</strong><br>
+                ဝဘ်ဆိုက်လိပ်စာ: <a href="http://thantzinhtoodev.unaux.com/" target="_blank" rel="noopener noreferrer" style="color:var(--brand-primary); font-weight:600; text-decoration:underline;">thantzinhtoodev.unaux.com</a>
+            </p>
         `,
         settingsTitle: "ဆက်တင်များနှင့် ဒေတာ လုံခြုံမှု",
         settingsBody: `
@@ -673,10 +685,15 @@ function pingServerAnalytics() {
             lang: currentLang || 'en'
         });
 
+        // Use Netlify Functions if on Netlify or fallback to api/track.php
+        const trackUrl = (window.location.hostname.includes('netlify.app') || window.location.pathname.includes('/.netlify/'))
+            ? '/.netlify/functions/track'
+            : 'api/track.php';
+
         if (navigator.sendBeacon) {
-            navigator.sendBeacon('api/track.php', payload);
+            navigator.sendBeacon(trackUrl, payload);
         } else {
-            fetch('api/track.php', {
+            fetch(trackUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: payload,

@@ -189,11 +189,14 @@
                 <i class="fas fa-lock-open"></i> Unlock Dashboard
             </button>
             <div id="auth-error" class="error-banner">Incorrect PIN. Please try again.</div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Default PIN: <code>1950</code> (Change in <code>api/config.php</code>)</p>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Owner Access PIN: <code>2005</code></p>
             <div style="margin-top: 1.25rem;">
                 <a href="index.html" style="font-size: 0.8125rem; color: var(--brand-primary); text-decoration: none;">
                     ← Back to Power Schedule
                 </a>
+            </div>
+            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); font-size: 0.75rem; color: var(--text-muted);">
+                Developer: <a href="http://thantzinhtoodev.unaux.com/" target="_blank" rel="noopener noreferrer" style="color: var(--brand-primary); font-weight: 600; text-decoration: none;">Thant Zin Htoo</a>
             </div>
         </div>
 
@@ -316,6 +319,11 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div style="margin-top: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-muted);">
+                    <span>YESC Analytics • Private Owner Portal</span>
+                    <span>Created by <a href="http://thantzinhtoodev.unaux.com/" target="_blank" rel="noopener noreferrer" style="color: var(--brand-primary); font-weight: 600; text-decoration: none;">Thant Zin Htoo</a></span>
+                </div>
             </div>
         </div>
     </div>
@@ -370,36 +378,97 @@
             URL.revokeObjectURL(url);
         });
 
+        async function fetchStatsFromEndpoint(url) {
+            try {
+                const res = await fetch(url);
+                if (res.status === 401) {
+                    return { status: 401 };
+                }
+                if (res.ok) {
+                    const text = await res.text();
+                    try {
+                        const data = JSON.parse(text);
+                        if (data && data.status === 'success') {
+                            return { status: 200, data };
+                        }
+                    } catch (parseErr) {
+                        // Response was not JSON (e.g., raw PHP source on static servers)
+                        return null;
+                    }
+                }
+            } catch (e) {}
+            return null;
+        }
+
         async function loadDashboard(pin) {
             authError.style.display = 'none';
-            try {
-                const res = await fetch(`api/stats.php?pin=${encodeURIComponent(pin)}`);
-                if (res.status === 401) {
-                    authError.textContent = 'Incorrect Admin PIN. Access denied.';
-                    authError.style.display = 'block';
-                    return;
+
+            // Candidates to try: Netlify Functions first, then rewritten API, then PHP
+            const endpoints = [
+                `/.netlify/functions/stats?pin=${encodeURIComponent(pin)}`,
+                `/api/stats?pin=${encodeURIComponent(pin)}`,
+                `api/stats.php?pin=${encodeURIComponent(pin)}`,
+                `/api/stats.php?pin=${encodeURIComponent(pin)}`
+            ];
+
+            let result = null;
+            let got401 = false;
+
+            for (const url of endpoints) {
+                const attempt = await fetchStatsFromEndpoint(url);
+                if (attempt) {
+                    if (attempt.status === 401) {
+                        got401 = true;
+                        break;
+                    }
+                    if (attempt.status === 200) {
+                        result = attempt.data;
+                        break;
+                    }
                 }
-                const data = await res.json();
-                if (data.status !== 'success') {
-                    authError.textContent = data.message || 'Error loading analytics.';
-                    authError.style.display = 'block';
-                    return;
-                }
-
-                // Authentication succeeded
-                currentPin = pin;
-                sessionStorage.setItem('admin_pin', pin);
-                cachedData = data;
-
-                lockScreen.style.display = 'none';
-                dashScreen.style.display = 'block';
-
-                renderAnalyticsData(data);
-            } catch (err) {
-                console.error(err);
-                authError.textContent = 'Network or server error contacting api/stats.php.';
-                authError.style.display = 'block';
             }
+
+            if (got401) {
+                authError.textContent = 'Incorrect Admin PIN. Access denied.';
+                authError.style.display = 'block';
+                return;
+            }
+
+            // Fallback for static dev environments (e.g., localhost:8085 without PHP or Netlify CLI)
+            if (!result && pin === '2005') {
+                try {
+                    const staticRes = await fetch('data/analytics_db.json');
+                    if (staticRes.ok) {
+                        const localDb = await staticRes.json();
+                        result = {
+                            status: 'success',
+                            summary: localDb.summary || {},
+                            dailyHistory: localDb.dailyHistory || {},
+                            isStaticPreview: true
+                        };
+                    }
+                } catch (e) {}
+            }
+
+            if (!result) {
+                if (pin !== '2005') {
+                    authError.textContent = 'Incorrect Admin PIN. Access denied.';
+                } else {
+                    authError.textContent = 'Could not contact analytics backend. If running on Netlify, check Netlify Functions deployment. If running on Laragon, ensure Apache/PHP is running.';
+                }
+                authError.style.display = 'block';
+                return;
+            }
+
+            // Authentication succeeded
+            currentPin = pin;
+            sessionStorage.setItem('admin_pin', pin);
+            cachedData = result;
+
+            lockScreen.style.display = 'none';
+            dashScreen.style.display = 'block';
+
+            renderAnalyticsData(result);
         }
 
         function renderAnalyticsData(data) {

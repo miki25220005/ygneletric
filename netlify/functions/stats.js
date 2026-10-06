@@ -1,7 +1,7 @@
 const { Client } = require('pg');
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://netlifydb_owner:npg_Y8Ufmplcgr7E@ep-dawn-resonance-ai1pdxvy.c-4.us-east-1.db.netlify.com/netlifydb?sslmode=require';
-const ADMIN_PIN = process.env.ADMIN_PIN || '1950';
+const ADMIN_PIN = process.env.ADMIN_PIN || '2005';
 
 exports.handler = async (event, context) => {
     const headers = {

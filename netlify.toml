@@ -2,23 +2,27 @@
   publish = "."
   functions = "netlify/functions"
 
-# Rewrites for API endpoints
+# Rewrites for API endpoints (force=true ensures Netlify functions override physical PHP files)
 [[redirects]]
   from = "/api/track"
   to = "/.netlify/functions/track"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/track.php"
   to = "/.netlify/functions/track"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/stats"
   to = "/.netlify/functions/stats"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/stats.php"
   to = "/.netlify/functions/stats"
   status = 200
+  force = true
