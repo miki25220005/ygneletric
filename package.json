@@ -1,0 +1,11 @@
+{
+  "name": "ygneletric",
+  "version": "1.0.0",
+  "description": "Yangon Electricity Schedule & Outage Tracker",
+  "scripts": {
+    "init-db": "node scripts/init-db.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}
