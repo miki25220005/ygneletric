@@ -1,0 +1,8 @@
+# Temporary lock files
+data/lock.tmp
+*.tmp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

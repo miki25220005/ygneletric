@@ -1,0 +1,18 @@
+{
+  "summary": {
+    "totalPageviews": 0,
+    "uniqueVisitors": 0,
+    "firstRecorded": "2026-10-06",
+    "lastUpdated": "2026-10-06 00:00:00",
+    "devices": {
+      "mobile": 0,
+      "desktop": 0,
+      "tablet": 0
+    },
+    "groups": {
+      "A": 0,
+      "B": 0
+    }
+  },
+  "dailyHistory": {}
+}
