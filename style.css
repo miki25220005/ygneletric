@@ -1,0 +1,1207 @@
+/* ==========================================================================
+   YANGON ELECTRICITY SCHEDULE CHECKER - COMPLIANT DESIGN SYSTEM
+   Standards: WCAG 2.2 (Level AA/AAA), Section 508, EAA 2025, Humane UI
+   ========================================================================== */
+
+/* 1. CSS Custom Properties / Color Tokens (WCAG Contrast Compliant) */
+:root {
+    /* Color Palette - Light Mode */
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-elevated: #f1f5f9;
+    --bg-surface-subtle: #f8fafc;
+    
+    --border-subtle: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --border-focus: #2563eb;
+
+    --text-primary: #0f172a;       /* Contrast ratio > 12:1 against light */
+    --text-secondary: #334155;     /* Contrast ratio > 7:1 against light */
+    --text-muted: #64748b;         /* Contrast ratio > 4.5:1 against light */
+    --text-inverse: #ffffff;
+
+    /* Semantic Status Colors (Tested for 4.5:1 text & 3:1 graphical contrast) */
+    --power-on-bg: #ecfdf5;
+    --power-on-border: #10b981;
+    --power-on-text: #065f46;
+    --power-on-accent: #059669;
+
+    --power-off-bg: #fef2f2;
+    --power-off-border: #ef4444;
+    --power-off-text: #991b1b;
+    --power-off-accent: #dc2626;
+
+    --brand-primary: #1d4ed8;
+    --brand-hover: #1e40af;
+    --brand-active: #172554;
+    --brand-light: #eff6ff;
+
+    --warning-bg: #fffbeb;
+    --warning-border: #f59e0b;
+    --warning-text: #92400e;
+
+    /* Shadow & Glass tokens */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --modal-backdrop: rgba(15, 23, 42, 0.65);
+
+    /* Typography & Sizing */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mm: 'Pyidaungsu', 'Noto Sans Myanmar', 'Padauk', sans-serif;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+    --radius-full: 9999px;
+
+    /* Accessibility Target Size */
+    --min-touch-target: 44px;
+}
+
+/* Dark Mode Tokens */
+html.dark {
+    --bg-page: #0f172a;
+    --bg-card: #1e293b;
+    --bg-elevated: #334155;
+    --bg-surface-subtle: #1e293b;
+
+    --border-subtle: #334155;
+    --border-strong: #475569;
+    --border-focus: #60a5fa;
+
+    --text-primary: #f8fafc;       /* Contrast ratio > 12:1 against dark */
+    --text-secondary: #cbd5e1;     /* Contrast ratio > 7:1 against dark */
+    --text-muted: #94a3b8;         /* Contrast ratio > 4.5:1 against dark */
+    --text-inverse: #0f172a;
+
+    --power-on-bg: #064e3b;
+    --power-on-border: #34d399;
+    --power-on-text: #d1fae5;
+    --power-on-accent: #10b981;
+
+    --power-off-bg: #7f1d1d;
+    --power-off-border: #f87171;
+    --power-off-text: #fee2e2;
+    --power-off-accent: #ef4444;
+
+    --brand-primary: #3b82f6;
+    --brand-hover: #60a5fa;
+    --brand-active: #93c5fd;
+    --brand-light: #1e3a8a;
+
+    --warning-bg: #78350f;
+    --warning-border: #fbbf24;
+    --warning-text: #fef3c7;
+
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --card-shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.6);
+    --modal-backdrop: rgba(0, 0, 0, 0.8);
+}
+
+/* Base resets & layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Myanmar font support */
+[lang="my"], .font-myanmar {
+    font-family: var(--font-mm), var(--font-sans);
+    line-height: 1.7;
+}
+
+/* 2. Accessibility: Focus visible (WCAG 2.4.7 & 2.4.11) */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--border-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* Skip to main content link for keyboard & screen readers */
+.skip-link {
+    position: absolute;
+    top: -999px;
+    left: 1rem;
+    background: var(--brand-primary);
+    color: var(--text-inverse);
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    z-index: 1000;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 1rem;
+    outline: 3px solid #facc15;
+}
+
+/* Touch targets (WCAG 2.5.8) */
+button, select, a, input {
+    min-height: var(--min-touch-target);
+    min-width: var(--min-touch-target);
+    touch-action: manipulation;
+}
+
+/* 3. Screen Reader Utilities */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 4. Layout Container - Mobile, Tablet, Desktop Responsive */
+.app-container {
+    width: 100%;
+    max-width: 32rem; /* Mobile default (< 640px) */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 0.5rem 0.75rem 2.5rem;
+    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tablet Breakpoint (640px - 859px) */
+@media (min-width: 640px) {
+    .app-container {
+        max-width: 44rem;
+        padding: 1.25rem 1.5rem 3rem;
+        gap: 1.5rem;
+    }
+}
+
+/* Tablet Landscape & Desktop Breakpoint (>= 860px) */
+@media (min-width: 860px) {
+    .app-container {
+        max-width: 68rem;
+        padding: 2rem 2rem 4rem;
+        gap: 1.75rem;
+    }
+}
+
+/* Wide Desktop Monitor (>= 1200px) */
+@media (min-width: 1200px) {
+    .app-container {
+        max-width: 76rem;
+    }
+}
+
+/* Responsive Main Layout Grid */
+.app-main-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+@media (min-width: 860px) {
+    .app-main-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        grid-template-areas:
+            "groups groups"
+            "timeline timeline"
+            "status schedule"
+            "countdown schedule"
+            "safety schedule"
+            "actions schedule";
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .area-groups { grid-area: groups; }
+    .area-timeline { grid-area: timeline; }
+    .area-status { grid-area: status; }
+    .area-countdown { grid-area: countdown; }
+    .area-schedule { grid-area: schedule; }
+    .area-safety { grid-area: safety; }
+    .area-actions { grid-area: actions; }
+}
+
+/* 5. Header & Controls */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    background-color: var(--brand-light);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    width: 2.75rem;
+    height: 2.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-elevated);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+}
+
+.icon-btn:active {
+    transform: translateY(1px);
+}
+
+.lang-btn {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    padding: 0 0.75rem;
+    width: auto;
+    border-radius: var(--radius-full);
+}
+
+/* 6. Card Components */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* 7. Group Selection Segmented Control */
+.group-tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-tabs-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.group-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.375rem;
+    background-color: var(--bg-elevated);
+    padding: 0.375rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+}
+
+.group-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.group-tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.group-tab-btn[aria-selected="true"] {
+    background-color: var(--bg-card);
+    color: var(--brand-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+}
+
+/* 8. Live Status Card */
+.status-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+    border-width: 2px;
+}
+
+.status-card.status-on {
+    background-color: var(--power-on-bg);
+    border-color: var(--power-on-border);
+    color: var(--power-on-text);
+}
+
+.status-card.status-off {
+    background-color: var(--power-off-bg);
+    border-color: var(--power-off-border);
+    color: var(--power-off-text);
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-on .status-pill {
+    background-color: var(--power-on-border);
+    color: #ffffff;
+}
+
+.status-off .status-pill {
+    background-color: var(--power-off-border);
+    color: #ffffff;
+}
+
+.status-main-text {
+    font-size: 1.375rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.status-sub-text {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* 9. Countdown Section */
+.countdown-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.countdown-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.countdown-digits {
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.progress-track {
+    width: 100%;
+    height: 0.625rem;
+    background-color: var(--bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--brand-primary);
+    border-radius: var(--radius-full);
+    transition: width 1s linear;
+}
+
+.status-off ~ .countdown-card .progress-fill,
+.status-card.status-off .progress-fill {
+    background-color: var(--power-off-accent);
+}
+
+/* 10. 24-Hour Visual Daily Timeline Bar (Ethical Visual Clarity) */
+.timeline-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timeline-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.timeline-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.legend-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-full);
+}
+
+.legend-dot.on {
+    background-color: var(--power-on-accent);
+}
+
+.legend-dot.off {
+    background-color: var(--power-off-accent);
+}
+
+.timeline-bar-container {
+    position: relative;
+    padding-top: 1.25rem; /* Room for current time needle indicator */
+}
+
+.timeline-bar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    height: 2.25rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+}
+
+.timeline-segment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #ffffff;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    user-select: none;
+    transition: filter 0.2s ease;
+}
+
+.timeline-segment:last-child {
+    border-right: none;
+}
+
+.timeline-segment.is-power-on {
+    background-color: var(--power-on-accent);
+}
+
+.timeline-segment.is-power-off {
+    background-color: var(--power-off-accent);
+}
+
+.timeline-segment:hover {
+    filter: brightness(1.15);
+}
+
+.timeline-current-needle {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.timeline-needle-label {
+    background-color: var(--text-primary);
+    color: var(--text-inverse);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.timeline-needle-pointer {
+    width: 2px;
+    height: 2.25rem;
+    background-color: var(--text-primary);
+}
+
+@media (min-width: 640px) {
+    .timeline-bar {
+        height: 2.75rem;
+    }
+    .timeline-segment {
+        font-size: 0.8125rem;
+    }
+    .timeline-needle-pointer {
+        height: 2.75rem;
+    }
+}
+
+/* 11. Day Navigator & Schedule List */
+.schedule-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.schedule-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.schedule-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.nav-day-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-day-btn:hover:not(:disabled) {
+    background-color: var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.nav-day-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.schedule-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.schedule-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    height: 100%;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.15rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    gap: 1rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.schedule-item:hover {
+    transform: translateY(-1px);
+}
+
+.schedule-item.on {
+    background-color: var(--power-on-bg);
+    border-color: var(--power-on-border);
+    color: var(--power-on-text);
+}
+
+.schedule-item.off {
+    background-color: var(--power-off-bg);
+    border-color: var(--power-off-border);
+    color: var(--power-off-text);
+}
+
+.schedule-item-time {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.schedule-item-time i {
+    opacity: 0.8;
+}
+
+/* Identical uniform dimensions for Outage and Available buttons */
+.schedule-item-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    height: 2.25rem;
+    width: 7.25rem;
+    min-width: 7.25rem;
+    max-width: 7.25rem;
+    padding: 0 0.5rem;
+    border-radius: var(--radius-full);
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.schedule-item-badge i {
+    width: 0.9rem;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+}
+
+.schedule-item-badge span {
+    display: inline-block;
+}
+
+.schedule-item.on .schedule-item-badge {
+    background-color: var(--power-on-border);
+    color: #ffffff;
+}
+
+.schedule-item.off .schedule-item-badge {
+    background-color: var(--power-off-border);
+    color: #ffffff;
+}
+
+/* 12. Public Safety, Ethics & Medical Equipment Notice */
+.safety-alert {
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    color: var(--warning-text);
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.45;
+}
+
+.safety-alert i {
+    font-size: 1.125rem;
+    color: var(--warning-border);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+/* 13. Offline & Connectivity Banner */
+.offline-banner {
+    display: none;
+    background-color: #fef2f2;
+    border: 1px solid #ef4444;
+    color: #991b1b;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+html.dark .offline-banner {
+    background-color: #7f1d1d;
+    border-color: #f87171;
+    color: #fee2e2;
+}
+
+.offline-banner.visible {
+    display: block;
+}
+
+/* 14. Emergency & Support Quick Action */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+@media (max-width: 400px) {
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.action-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--card-shadow);
+}
+
+.action-card-btn:hover {
+    background-color: var(--bg-elevated);
+    border-color: var(--border-strong);
+}
+
+.action-card-btn.primary {
+    background-color: var(--brand-primary);
+    color: var(--text-inverse);
+    border-color: var(--brand-primary);
+}
+
+.action-card-btn.primary:hover {
+    background-color: var(--brand-hover);
+}
+
+/* 15. Accessible Modal Dialogs (WCAG compliant) */
+dialog {
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-width: 90vw;
+    width: 28rem;
+    margin: auto;
+}
+
+dialog::backdrop {
+    background-color: var(--modal-backdrop);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow-lg);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+}
+
+.modal-close-btn:hover {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Form inputs & buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--brand-primary);
+    color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-hover);
+}
+
+.btn-danger {
+    background-color: var(--power-off-accent);
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--bg-elevated);
+}
+
+/* 16. Footer with transparency and rights */
+.app-footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    min-height: auto;
+}
+
+.footer-link:hover {
+    color: var(--brand-primary);
+}
+
+/* 18. Self Analytics Dashboard Styles */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.analytics-card {
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+}
+
+.analytics-card i {
+    font-size: 1.125rem;
+    color: var(--brand-primary);
+    margin-bottom: 0.125rem;
+}
+
+.analytics-stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.analytics-stat-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.analytics-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.analytics-section-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.analytics-bars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.analytics-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.analytics-bar-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.analytics-bar-track {
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.analytics-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-primary);
+    transition: width 0.5s ease;
+}
+
+.analytics-footer-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.analytics-footer-actions button {
+    flex: 1;
+}
+
+/* 19. Schedule Version & History Styles */
+.version-badge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    background-color: var(--brand-light);
+    border: 1px solid var(--border-subtle);
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: auto;
+}
+
+.version-badge-btn:hover {
+    background-color: var(--bg-elevated);
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
+}
+
+.version-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.version-card {
+    background-color: var(--bg-elevated);
+    border: 2px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.version-card.is-active {
+    border-color: var(--brand-primary);
+    background-color: var(--bg-card);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+.version-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.version-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.version-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+}
+
+.version-status-pill.active {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.version-status-pill.archive {
+    background-color: var(--text-muted);
+    color: #ffffff;
+}
+
+.version-card-desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.version-card-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.version-spec-chip {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+}
+
+.version-card.is-active .version-spec-chip {
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+html.dark .version-card.is-active .version-spec-chip {
+    background-color: rgba(37, 99, 235, 0.2);
+    color: #93c5fd;
+}
+
+/* 17. Reduced Motion Support (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

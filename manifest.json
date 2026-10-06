@@ -1,11 +1,12 @@
 {
-    "name": "Yangon Electricity Checker",
-    "short_name": "Electricity Checker",
-    "description": "Check electricity schedules for Yangon, Myanmar",
-    "start_url": "/index.html",
+    "name": "Yangon Electricity Schedule (YESC)",
+    "short_name": "YESC Power",
+    "description": "Check Yangon rotational electricity schedules, blackouts, and live countdown timers with Myanmar and English support.",
+    "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "#1a202c",
-    "theme_color": "#2b6cb0",
+    "orientation": "portrait-primary",
+    "background_color": "#0f172a",
+    "theme_color": "#1d4ed8",
     "icons": [
         {
             "src": "icon-192.png",

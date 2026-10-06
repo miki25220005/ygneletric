@@ -1,0 +1,6 @@
+# robots.txt for Yangon Electricity Schedule
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://ygnelectric.com/sitemap.xml

@@ -3,120 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yangon Electricity Schedule Checker (Light Mode)</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#1d4ed8">
+    <meta name="description" content="Yangon Electricity Schedule & Blackout Tracker. Real-time YESC power outage status, daily rotational schedules for Groups A & B, and live countdown timer. ရန်ကုန် လျှပ်စစ်မီး အချိန်ဇယားနှင့် မီးပျက်ချိန် စောင့်ကြည့်စနစ်။">
+    <meta name="keywords" content="Yangon, Yangon Electricity, Yangon Power Schedule, Yangon Power Outage, YESC, Yangon Electricity Supply Corporation, Yangon Blackout Schedule, Yangon Electricity Checker, ရန်ကုန်, ရန်ကုန် လျှပ်စစ်မီး, ရန်ကုန် မီးပျက်ချိန်, YESC အချိန်ဇယား, ၂၀၂၆ အောက်တိုဘာ မီးပေးဇယား">
+    <meta name="author" content="Yangon Community Utility">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="googleb8e7a17fd165e816">
+    <link rel="canonical" href="./">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yangon Electricity Schedule | ရန်ကုန် လျှပ်စစ်မီး အချိန်ဇယား (YESC)">
+    <meta property="og:description" content="Official YESC rotational power schedule and live blackout countdown for Yangon residents. Check Group A & B daily power hours.">
+    <meta property="og:image" content="icon-512.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Yangon Electricity Schedule | YESC Power Tracker">
+    <meta name="twitter:description" content="Live rotational electricity schedule & countdown for Yangon. ရန်ကုန် မီးပျက်ချိန် စောင့်ကြည့်စနစ်။">
+    <meta name="twitter:image" content="icon-192.png">
+
+    <!-- Structured Data (JSON-LD) for Search Engine Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Yangon Electricity Schedule Tracker",
+      "alternateName": "ရန်ကုန် လျှပ်စစ်မီး အချိန်ဇယား",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "description": "Live Yangon electricity rotational schedule, blackout tracker, and countdown timer according to official YESC directives.",
+      "keywords": "Yangon, Yangon Electricity, YESC, Yangon Electricity Schedule, Yangon Power Outage, ရန်ကုန် လျှပ်စစ်မီး, ရန်ကုန် မီးပျက်ချိန်",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "MMK"
+      }
+    }
+    </script>
+    
+    <title>Yangon Electricity Schedule | ရန်ကုန် လျှပ်စစ်မီး အချိန်ဇယား</title>
+
+    <!-- Google Fonts for Modern Typography & Burmese Unicode Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    <!-- iOS Meta Tags for PWA -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        @keyframes countdownTick {
-            0% { opacity: 0.7; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        .countdown-tick {
-            animation: countdownTick 0.3s ease-in-out;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Unified Design System & WCAG 2.2 Compliant Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Web App Manifest for PWA & Offline Access -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
 </head>
-<body class="min-h-screen flex items-center justify-center transition-all duration-500 bg-gray-100">
-    <a href="index-dark.html" class="absolute top-5 right-5 text-2xl cursor-pointer transition-transform duration-300 hover:scale-110 text-gray-900">
-        <i class="fas fa-moon"></i>
-    </a>
+<body>
+    <!-- Accessibility Skip Link (WCAG 2.4.1) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Group Selection Modal -->
-    <div id="group-modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
-            <h2 class="text-xl font-semibold text-center mb-4 text-gray-900">Select Your Group</h2>
-            <select id="group-select" class="w-full p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <option value="" disabled selected>Select a group</option>
-                <option value="A">Group A</option>
-                <option value="B">Group B</option>
-                <option value="C">Group C</option>
-            </select>
-            <button id="confirm-group" class="mt-4 w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Confirm</button>
-        </div>
-    </div>
+    <!-- Screen Reader Live Region (WCAG 4.1.3) -->
+    <div id="a11y-live-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Main Content (Hidden Initially) -->
-    <div id="main-content" class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg hidden fade-in">
-        <h1 class="text-2xl font-semibold text-center mb-6 text-gray-900">Yangon Electricity Checker</h1>
-
-        <!-- Offline Indicator -->
-        <div id="offline-indicator" class="hidden text-center text-sm text-red-500 mb-4">
-            You are offline. Using cached data.
-        </div>
-
-        <div class="flex justify-center mb-6">
-            <select id="group" onchange="updateDisplay()" class="p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <option value="A">Group A</option>
-                <option value="B">Group B</option>
-                <option value="C">Group C</option>
-            </select>
-        </div>
-
-        <div id="status" class="text-center p-4 rounded-lg mb-6 text-sm font-medium">
-            <i class="fas fa-bolt mr-2 text-gray-900"></i>
-            <span id="status-text"></span>
-        </div>
-
-        <div class="mb-6">
-            <h3 id="countdown-title" class="text-center text-sm font-medium text-gray-600 mb-2">
-                <i class="fas fa-clock mr-2"></i>
-                <span id="countdown-title-text"></span>
-            </h3>
-            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div id="timer-progress" class="h-full bg-blue-500 rounded-full transition-all duration-1000"></div>
+    <div class="app-container">
+        <!-- 1. Header with Brand & Controls -->
+        <header class="app-header" role="banner">
+            <div>
+                <div class="brand-badge">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <span>YESC TRACKER</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.25rem;">
+                    <h1 id="app-title" style="font-size: 1.25rem; font-weight: 800;">Yangon Power Schedule</h1>
+                    <button id="version-badge-btn" class="version-badge-btn" aria-label="Schedule Version: October 2026">
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                        <span id="version-badge-text">Oct 2026</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.65rem; opacity: 0.8;" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <p id="app-subtitle" style="font-size: 0.8125rem; color: var(--text-muted);">Rotational Electricity Tracker</p>
             </div>
-            <div id="timer" class="text-center mt-2 text-lg font-medium text-gray-900">00:00:00</div>
-        </div>
 
-        <div class="bg-gray-50 p-4 rounded-lg">
-            <div class="flex justify-between items-center mb-3">
-                <button id="prev-day" class="text-gray-600 hover:text-gray-900">
-                    <i class="fas fa-arrow-left text-lg"></i>
+            <div class="header-actions">
+                <!-- Schedule Version & History Button -->
+                <button id="version-history-btn" class="icon-btn" aria-label="Schedule Version History">
+                    <i class="fas fa-clock-rotate-left" aria-hidden="true"></i>
                 </button>
-                <h3 id="schedule-title" class="text-center text-sm font-medium text-gray-600"></h3>
-                <button id="next-day" class="text-gray-600 hover:text-gray-900">
-                    <i class="fas fa-arrow-right text-lg"></i>
+
+                <!-- Owner Analytics Button (Hidden from public by default; unlocked via ?admin or admin.html) -->
+                <button id="analytics-btn" class="icon-btn" aria-label="View Usage Analytics" style="display: none;">
+                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                </button>
+
+                <!-- Language Toggle Button -->
+                <button id="lang-toggle-btn" class="icon-btn lang-btn" aria-label="Switch language to မြန်မာ">
+                    <span id="lang-toggle-text">မြန်မာ</span>
+                </button>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle theme">
+                    <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
                 </button>
             </div>
-            <ul id="schedule" class="space-y-2 text-sm"></ul>
+        </header>
+
+        <!-- 2. Offline Notification Banner -->
+        <div id="offline-banner" class="offline-banner" role="status" aria-live="polite">
+            <i class="fas fa-wifi" aria-hidden="true"></i>
+            <span id="offline-banner-text">You are currently offline. Viewing cached schedule data.</span>
         </div>
 
-        <!-- Footer with Copyright Notice -->
-        <footer class="mt-6 text-center text-sm text-gray-600">
-            Coding by MICKEY © 2025. All rights reserved.
+        <main id="main-content" class="app-main-layout">
+            <!-- 3. Group Selection Segmented Tabs (WCAG Touch Target Friendly) -->
+            <section class="card group-tabs-container area-groups" aria-labelledby="group-tabs-heading">
+                <span id="group-tabs-heading" class="group-tabs-label">Select Group:</span>
+                <div id="group-tabs" class="group-tabs" role="tablist" aria-label="Residential Electricity Groups">
+                    <button id="tab-group-a" class="group-tab-btn" role="tab" aria-selected="true" aria-controls="status-card">Group A</button>
+                    <button id="tab-group-b" class="group-tab-btn" role="tab" aria-selected="false" aria-controls="status-card">Group B</button>
+                    <button id="tab-group-c" class="group-tab-btn" role="tab" aria-selected="false" aria-controls="status-card">Group C</button>
+                </div>
+            </section>
+
+            <!-- 4. Current Status Card (Color + Text + Icon Independent) -->
+            <section id="status-card" class="card status-card status-on area-status" aria-label="Current Electricity Status">
+                <div id="status-pill" class="status-pill">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <span>Electricity Available</span>
+                </div>
+                <div>
+                    <h2 id="status-main-text" class="status-main-text">Group A - Electricity Available</h2>
+                    <p id="status-sub-text" class="status-sub-text">Power is scheduled to be active for your group.</p>
+                </div>
+            </section>
+
+            <!-- 5. Countdown Card -->
+            <section class="card countdown-card area-countdown" aria-label="Countdown to next status change">
+                <div class="countdown-title">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    <span id="countdown-title-text">Time until power turns OFF</span>
+                </div>
+                <div id="countdown-digits" class="countdown-digits" aria-label="Remaining time">00:00:00</div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </section>
+
+            <!-- 6. 24-Hour Visual Daily Timeline Bar (Ethical Clarity for at-a-glance planning) -->
+            <section class="card timeline-card area-timeline" aria-label="24-Hour Electricity Timeline">
+                <div class="timeline-header">
+                    <h3 id="timeline-title" class="timeline-title">24-Hour Visual Overview</h3>
+                    <div class="timeline-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot on" aria-hidden="true"></span>
+                            <span id="legend-on-text">Available</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot off" aria-hidden="true"></span>
+                            <span id="legend-off-text">Outage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-bar-container">
+                    <div id="timeline-needle" class="timeline-current-needle">
+                        <span id="timeline-needle-label" class="timeline-needle-label">Now</span>
+                        <div class="timeline-needle-pointer"></div>
+                    </div>
+                    <div id="timeline-bar" class="timeline-bar" role="table" aria-label="Visual representation of daily power intervals">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Daily Schedule Timetable with Day Navigation -->
+            <section class="card schedule-card area-schedule" aria-label="Rotational Schedule Timetable">
+                <div class="schedule-nav">
+                    <button id="prev-day-btn" class="nav-day-btn" aria-label="View yesterday's schedule">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <div>
+                        <h3 id="schedule-title" class="schedule-title">Today's Schedule</h3>
+                        <p id="schedule-subtitle" class="schedule-subtitle"></p>
+                    </div>
+                    <button id="next-day-btn" class="nav-day-btn" aria-label="View tomorrow's schedule">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <ul id="schedule-list" class="schedule-list" role="list">
+                    <!-- Populated dynamically via JS -->
+                </ul>
+            </section>
+
+            <!-- 8. Safety & Medical Equipment Disclaimer (Public Health & Utility Ethics) -->
+            <aside class="safety-alert area-safety" role="note" aria-labelledby="safety-title">
+                <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                <div>
+                    <h4 id="safety-title" style="font-weight: 700; margin-bottom: 0.25rem;">Safety & Medical Notice</h4>
+                    <p id="safety-notice-text">
+                        Rotational schedules are planned by YESC and may change during emergency grid trips or line repairs. Do not rely solely on this timetable for life-critical medical devices (oxygen concentrators, cold-stored insulin) without an independent backup generator or inverter.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- 9. Civic & Emergency Hotlines -->
+            <section class="action-grid area-actions" aria-label="Emergency and Safety Actions">
+                <a id="emergency-action-btn" href="tel:1950" class="action-card-btn primary">
+                    <i class="fas fa-phone-alt" aria-hidden="true"></i> YESC Hotline (1950)
+                </a>
+                <button id="safety-tips-btn" class="action-card-btn">
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Safety Guidelines
+                </button>
+            </section>
+        </main>
+
+        <!-- 10. Footer with Transparency & Privacy -->
+        <footer class="app-footer" role="contentinfo">
+            <p id="footer-notice">Community Utility Service • Designed with WCAG 2.2 AA Accessibility & Humane UI Ethics</p>
+            <div class="footer-links">
+                <button id="privacy-link" class="footer-link">Settings & Privacy</button>
+            </div>
+            <p style="font-size: 0.7rem; opacity: 0.8;">© 2025-2026 Yangon Power Schedule Checker</p>
         </footer>
     </div>
 
+    <!-- MODAL 1: First-Run Group Selection Modal (Accessible Dialog) -->
+    <dialog id="welcome-modal" aria-labelledby="welcome-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="welcome-modal-title" class="modal-title">Select Your Group</h2>
+            </div>
+            <div class="modal-body">
+                <p id="welcome-modal-desc">Select your residential group to view the exact power schedule and countdown.</p>
+                <select id="welcome-group-select" class="form-select" style="width: 100%; padding: 0.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-strong); background-color: var(--bg-card); color: var(--text-primary); font-size: 1rem;">
+                    <option value="A" selected>Group A</option>
+                    <option value="B">Group B</option>
+                    <option value="C">Group C</option>
+                </select>
+                <button id="welcome-confirm-btn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Confirm & Continue</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL 2: Safety Tips & Emergency Contacts -->
+    <dialog id="info-modal" aria-labelledby="info-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="info-modal-title" class="modal-title">YESC Emergency Contacts</h2>
+                <button class="modal-close-btn" aria-label="Close dialog">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="info-modal-content" class="modal-body">
+                <!-- Content injected dynamically via JS -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL 3: Settings & Data Privacy (GDPR Right to Erasure / Data Autonomy) -->
+    <dialog id="settings-modal" aria-labelledby="settings-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="settings-modal-title" class="modal-title">Settings & Data Privacy</h2>
+                <button class="modal-close-btn" aria-label="Close dialog">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="settings-modal-content" class="modal-body">
+                <!-- Content injected dynamically via JS -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL 4: Self Analytics & Usage Insights Dashboard -->
+    <dialog id="analytics-modal" aria-labelledby="analytics-modal-title">
+        <div class="modal-content" style="max-width: 34rem;">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-chart-pie" style="color: var(--brand-primary); font-size: 1.25rem;" aria-hidden="true"></i>
+                    <h2 id="analytics-modal-title" class="modal-title">App Usage Analytics</h2>
+                </div>
+                <button class="modal-close-btn" aria-label="Close dialog">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="analytics-modal-content" class="modal-body">
+                <!-- Dynamically populated via AppAnalytics.renderUI() -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL 5: Schedule Version & History -->
+    <dialog id="version-modal" aria-labelledby="version-modal-title">
+        <div class="modal-content" style="max-width: 36rem;">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-calendar-alt" style="color: var(--brand-primary); font-size: 1.25rem;" aria-hidden="true"></i>
+                    <h2 id="version-modal-title" class="modal-title">Schedule Versions & History</h2>
+                </div>
+                <button class="modal-close-btn" aria-label="Close dialog">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="version-modal-content" class="modal-body">
+                <!-- Dynamically populated via renderVersionHistory() -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- App Logic Script -->
     <script src="script.js"></script>
-    <!-- Register Service Worker -->
+
+    <!-- Service Worker Registration for Offline Resilience -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.error('Service Worker registration failed:', error);
-                    });
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('PWA Service Worker active:', reg.scope))
+                    .catch(err => console.warn('PWA registration:', err));
             });
-        } else {
-            console.error('Service Worker not supported in this browser.');
         }
     </script>
 </body>
