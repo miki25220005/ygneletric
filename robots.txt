@@ -1,6 +1,6 @@
-# robots.txt for Yangon Electricity Schedule
+# robots.txt for Yangon Electricity Schedule (YESC)
 User-agent: *
 Allow: /
 
-# Sitemap Location
-Sitemap: https://ygnelectric.com/sitemap.xml
+# Google Search Console Sitemap Location
+Sitemap: https://eletricygn.netlify.app/sitemap.xml
