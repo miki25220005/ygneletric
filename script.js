@@ -1534,9 +1534,9 @@ function renderCalendarUI(monthIndex = calendarActiveMonth) {
 
         let chipHtml = '';
         if (has5amPower) {
-            chipHtml = `<span class="cal-power-chip slot-5am">⚡ 05:00 ${t.calendarPowerOnBadge}</span>`;
+            chipHtml = `<span class="cal-power-chip slot-5am"><span class="cal-chip-time">05:00</span><span class="cal-chip-status"> ${t.calendarPowerOnBadge}</span></span>`;
         } else if (has9amPower) {
-            chipHtml = `<span class="cal-power-chip slot-9am">⚡ 09:00 ${t.calendarPowerOnBadge}</span>`;
+            chipHtml = `<span class="cal-power-chip slot-9am"><span class="cal-chip-time">09:00</span><span class="cal-chip-status"> ${t.calendarPowerOnBadge}</span></span>`;
         }
 
         cell.innerHTML = `

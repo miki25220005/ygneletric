@@ -1,12 +1,12 @@
 // Cache name
-const CACHE_NAME = 'electricity-checker-v18-aligned-icons-hours';
+const CACHE_NAME = 'electricity-checker-v19-clean-calendar-chips';
 
 // Core assets to pre-cache
 const urlsToCache = [
     './',
     './index.html',
-    './style.css?v=18',
-    './script.js?v=18',
+    './style.css?v=19',
+    './script.js?v=19',
     './manifest.json',
     './sitemap.xml',
     './icon-192.png',
