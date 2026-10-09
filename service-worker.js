@@ -1,12 +1,12 @@
 // Cache name
-const CACHE_NAME = 'electricity-checker-v16-responsive-mobile-tablet';
+const CACHE_NAME = 'electricity-checker-v17-compact-hours-loadshed';
 
 // Core assets to pre-cache
 const urlsToCache = [
     './',
     './index.html',
-    './style.css?v=16',
-    './script.js?v=16',
+    './style.css?v=17',
+    './script.js?v=17',
     './manifest.json',
     './sitemap.xml',
     './icon-192.png',
