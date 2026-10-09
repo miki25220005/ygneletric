@@ -1,12 +1,13 @@
 {
-    "name": "Yangon Electricity Schedule (YESC)",
-    "short_name": "YESC Power",
-    "description": "Check Yangon rotational electricity schedules, blackouts, and live countdown timers with Myanmar and English support.",
+    "name": "Yangon Electricity Schedule - Mee Pyt & EPC Tracker",
+    "short_name": "Mee Pyt YESC",
+    "description": "Track live Yangon electricity schedules, Mee Pyt / Mee Pyat power outages, YESC & Yangon EPC rotational blackouts, and countdown timers.",
     "start_url": "./index.html",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#0f172a",
     "theme_color": "#1d4ed8",
+    "categories": ["utilities", "lifestyle"],
     "icons": [
         {
             "src": "icon-192.png",

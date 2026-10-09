@@ -74,8 +74,27 @@ const I18N = {
         appTitle: "Yangon Power Schedule",
         appSubtitle: "Rotational Electricity Tracker",
         selectGroup: "Select Your Group",
-        groupSelectPrompt: "Select your residential group to view the exact power schedule and countdown.",
+        welcomeModalTitle: "Select Your Group",
+        welcomeModalSubtitle: "Welcome to YESC Schedule Tracker",
+        groupSelectPrompt: "Select your residential group to view the exact live power schedule and countdown for your area.",
         confirmBtn: "Confirm & Continue",
+        selectLaterBtn: "I Don't Know / Select Later",
+        welcomeHelpTitle: "Not sure which group you belong to?",
+        welcomeHelpDesc: "No problem! You can select later or choose any group now. You can change your group at any time using the buttons at the top of the screen.",
+        // First-Time User Guide Box
+        guideBadge: "First-Time User Guide",
+        guideTitle: "How Yangon Electricity Groups Work",
+        guideDesc: "YESC distributes electricity in Yangon by dividing townships into rotational groups. If you're not sure which group your neighborhood is in, don't worry! You can change it anytime above.",
+        guideStep1Title: "Change Anytime",
+        guideStep1Desc: "Easily switch between Group A & Group B anytime using the buttons at the top of the screen.",
+        guideStep2Title: "4-Hour Rotation",
+        guideStep2Desc: "Power alternates every 4 hours from 05:00 to 21:00. Overnight (21:00 - 05:00) has NO loadshed for all groups.",
+        guideStep3Title: "How to Find Your Group",
+        guideStep3Desc: "When your power is currently ON, check which group shows 'Available' here.",
+        guideQuickLabel: "Try selecting a group:",
+        guideGotItBtn: "Got It, Thanks!",
+        guideHelpBtn: "Group Guide",
+        groupTabsHint: "💡 You can change your group at any time. The schedule and timer update instantly.",
         groupLabel: "Select Group:",
         groupA: "Group A",
         groupB: "Group B",
@@ -95,11 +114,39 @@ const I18N = {
         yesterday: "Yesterday's Schedule",
         today: "Today's Schedule",
         tomorrow: "Tomorrow's Schedule",
+        prevDayYesterday: "Yesterday",
+        nextDayTomorrow: "Tomorrow",
+        prevDay: "Prev Day",
+        nextDay: "Next Day",
+        returnToday: "Back to Today",
+        calendarBtnText: "Calendar (Oct & Nov)",
+        calendarModalTitle: "Schedule Calendar (2026)",
+        calendarModalSubtitle: "Rotational power calendar for October & November",
+        calendarTabOct: "October 2026",
+        calendarTabNov: "November 2026",
+        calendarPrompt: "Tap any date to view 24-hr schedule",
+        calendarPowerOnBadge: "ON",
+        calendarPowerOffBadge: "OFF",
         availableBadge: "Available",
         outageBadge: "Outage",
         noLoadshedNote: "⚡ No Loadshed (All Groups Active)",
         safetyTitle: "Safety & Medical Notice",
         safetyNotice: "Rotational schedules are planned by YESC and may change during emergency grid trips or line repairs. Do not rely solely on this timetable for life-critical medical devices (oxygen concentrators, cold-stored insulin) without an independent backup generator or inverter.",
+        safetyAlertModalTitle: "Safety & Medical Notice",
+        safetyAlertModalSubtitle: "Critical health & electrical warning",
+        safetyAlertModalText: "Rotational schedules are planned by YESC and may change during emergency grid trips or line repairs. Do not rely solely on this timetable for life-critical medical devices (oxygen concentrators, cold-stored insulin) without an independent backup generator or inverter.",
+        safetyAlertAckBtn: "I Understand & Acknowledge",
+        // FAQ & SEO Knowledge Base
+        faqTitle: "Frequently Asked Questions (Mee Pyt & EPC Guide)",
+        faqSubtitle: "Common questions about Yangon electricity schedules & electric breakouts",
+        faqQ1: "How to check today's Mee Pyt / Mee Pyat (power outage) schedule in Yangon?",
+        faqA1: "YESC divides Yangon townships into rotational groups (Group A and Group B). Power alternates every 4 hours between 05:00 and 21:00. Overnight from 21:00 to 05:00, all groups have continuous power with No Loadshed. Use this live tracker to view your group's countdown and daily timetable.",
+        faqQ2: "What are Yangon Electric Breakout hours according to YESC & EPC?",
+        faqA2: "Under the official YESC plan, daylight electric breakouts rotate in 4-hour slots: 05:00 - 09:00, 09:00 - 13:00, 13:00 - 17:00, and 17:00 - 21:00. Check the 24-Hour Overview bar to see whether your group has electricity available or a scheduled outage.",
+        faqQ3: "What is the difference between Yangon EPC and YESC?",
+        faqA3: "Yangon residents commonly refer to local electricity offices and electricity supply as 'EPC' (Electricity Supply Enterprise). Officially, electricity in Yangon Region is distributed and managed by YESC (Yangon Electricity Supply Corporation). Both terms refer to Yangon's municipal electricity provider.",
+        faqQ4: "How to report an emergency electric breakout or fallen power lines in Yangon?",
+        faqA4: "For emergency power outages, fallen power lines, or transformer sparks, call the official YESC 24/7 hotline at <strong>1950</strong>, or contact your local township EPC office directly.",
         emergencyBtn: "YESC Hotline (1950)",
         safetyTipsBtn: "Safety Guidelines",
         settingsBtn: "Settings & Privacy",
@@ -179,8 +226,27 @@ const I18N = {
         appTitle: "ရန်ကုန် လျှပ်စစ်မီး အလှည့်ကျ ဇယား",
         appSubtitle: "အလှည့်ကျ မီးပေးဝေမှုနှင့် မီးပျက်ချိန် စောင့်ကြည့်စနစ်",
         selectGroup: "သင်၏ အုပ်စုကို ရွေးချယ်ပါ",
-        groupSelectPrompt: "သင့်ရပ်ကွက်/မြို့နယ် သက်ဆိုင်ရာ အုပ်စုကို ရွေးချယ်၍ မီးလာမည့်အချိန်နှင့် ကျန်ရှိချိန်ကို ကြည့်ရှုပါ။",
+        welcomeModalTitle: "သင်၏ အုပ်စုကို ရွေးချယ်ပါ",
+        welcomeModalSubtitle: "ရန်ကုန် မီးပေးဝေမှု စောင့်ကြည့်စနစ်မှ ကြိုဆိုပါသည်",
+        groupSelectPrompt: "သင့်ရပ်ကွက်/မြို့နယ် သက်ဆိုင်ရာ အုပ်စုကို ရွေးချယ်၍ မီးလာမည့်အချိန်နှင့် ကျန်ရှိချိန်ကို တိကျစွာ ကြည့်ရှုပါ။",
         confirmBtn: "အတည်ပြုပြီး စတင်မည်",
+        selectLaterBtn: "မသိသေးပါ / နောက်မှရွေးမည်",
+        welcomeHelpTitle: "မိမိရပ်ကွက် မည်သည့်အုပ်စုမှန်း မသိသေးပါသလား?",
+        welcomeHelpDesc: "စိတ်မပူပါနှင့်! ယခု မရွေးချယ်ဘဲ နောက်မှရွေးနိုင်သလို၊ မျက်နှာပြင် အပေါ်ရှိ Group ခလုတ်များဖြင့် အချိန်မရွေး လွတ်လပ်စွာ ပြောင်းလဲနိုင်ပါသည်။",
+        // First-Time User Guide Box
+        guideBadge: "ပထမဆုံး အသုံးပြုသူ လမ်းညွှန်",
+        guideTitle: "ရန်ကုန် လျှပ်စစ်မီး အုပ်စု (Groups) များအကြောင်း",
+        guideDesc: "YESC မှ ရန်ကုန်မြို့တွင်း လျှပ်စစ်ဓာတ်အားကို အုပ်စု (A နှင့် B) ခွဲခြား၍ အလှည့်ကျ ပေးဝေပါသည်။ သင့်ရပ်ကွက် မည်သည့်အုပ်စုဖြစ်သည်ကို မသေချာပါက အောက်ပါအတိုင်း အလွယ်တကူ စစ်ဆေးပြောင်းလဲနိုင်ပါသည်။",
+        guideStep1Title: "အချိန်မရွေး ပြောင်းလဲနိုင်ခြင်း",
+        guideStep1Desc: "မျက်နှာပြင် အပေါ်ဘက်ရှိ Group A / Group B ခလုတ်များကို နှိပ်ပြီး မိမိနှစ်သက်ရာ အုပ်စုသို့ အချိန်မရွေး ပြောင်းလဲကြည့်ရှုနိုင်ပါသည်။",
+        guideStep2Title: "၄ နာရီစီ အလှည့်ကျ စနစ်",
+        guideStep2Desc: "နံနက် ၀၅:၀၀ မှ ည ၂၁:၀၀ အထိ ၄ နာရီစီ အလှည့်ကျ မီးပေးဝေပြီး၊ ည ၂၁:၀၀ မှ နံနက် ၀၅:၀၀ အထိ အုပ်စုအားလုံး မီးမပျက်ပါ (No Loadshed)။",
+        guideStep3Title: "မိမိအုပ်စု သိရှိနိုင်မည့် နည်းလမ်း",
+        guideStep3Desc: "သင့်အိမ်တွင် မီးလာနေချိန် ဤဝဘ်ဆိုက်တွင် 'မီးရရှိနေပါသည်' ပြသနေသော အုပ်စုကို စစ်ဆေးကြည့်ပါ။",
+        guideQuickLabel: "အုပ်စု စမ်းသပ်ရွေးချယ်ရန်:",
+        guideGotItBtn: "နားလည်ပါပြီ",
+        guideHelpBtn: "အုပ်စု လမ်းညွှန်",
+        groupTabsHint: "💡 သင့်အုပ်စုကို ဤနေရာတွင် အချိန်မရွေး လွတ်လပ်စွာ ပြောင်းလဲနိုင်ပါသည်။",
         groupLabel: "အုပ်စု ရွေးရန်:",
         groupA: "အုပ်စု A",
         groupB: "အုပ်စု B",
@@ -200,11 +266,39 @@ const I18N = {
         yesterday: "မနေ့က အချိန်ဇယား",
         today: "ယနေ့ အချိန်ဇယား",
         tomorrow: "မနက်ဖြန် အချိန်ဇယား",
+        prevDayYesterday: "မနေ့က",
+        nextDayTomorrow: "မနက်ဖြန်",
+        prevDay: "ယခင်နေ့",
+        nextDay: "နောက်တစ်နေ့",
+        returnToday: "ယနေ့သို့ ပြန်ရန်",
+        calendarBtnText: "ပြက္ခဒိန် (အောက်တိုဘာ/နိုဝင်ဘာ)",
+        calendarModalTitle: "အချိန်ဇယား ပြက္ခဒိန် (၂၀၂၆)",
+        calendarModalSubtitle: "အောက်တိုဘာနှင့် နိုဝင်ဘာလ အလှည့်ကျ ဇယားများ",
+        calendarTabOct: "အောက်တိုဘာ ၂၀၂၆",
+        calendarTabNov: "နိုဝင်ဘာ ၂၀၂၆",
+        calendarPrompt: "၂၄ နာရီ ဇယားကြည့်ရန် ရက်စွဲကို နှိပ်ပါ",
+        calendarPowerOnBadge: "မီးလာ",
+        calendarPowerOffBadge: "မီးပျက်",
         availableBadge: "မီးလာမည်",
         outageBadge: "မီးပျက်မည်",
         noLoadshedNote: "⚡ No Loadshed (မီးမပျက်ပါ)",
         safetyTitle: "ဘေးကင်းလုံခြုံရေးနှင့် ကျန်းမာရေး သတိပေးချက်",
         safetyNotice: "ဤအချိန်ဇယားသည် YESC ၏ အလှည့်ကျ ဓာတ်အားပေးအစီအစဉ်ဖြစ်ပြီး အရေးပေါ်လိုင်းချို့ယွင်းမှုနှင့် ပြင်ဆင်မှုများကြောင့် အချိန်ပြောင်းလဲနိုင်ပါသည်။ အောက်ဆီဂျင်စက်နှင့် အအေးခန်းဆေးဝါးများကဲ့သို့ အသက်အန္တရာယ် အရေးကြီးသော ကျန်းမာရေးသုံးပစ္စည်းများအတွက် သီးသန့် အရန်မီးစက် သို့မဟုတ် အင်ဗာတာ မပါရှိဘဲ ဤဇယားတစ်ခုတည်းအပေါ် လုံးဝမှီခိုခြင်း မပြုကြပါရန် သတိပေးအပ်ပါသည်။",
+        safetyAlertModalTitle: "ဘေးကင်းလုံခြုံရေးနှင့် ကျန်းမာရေး သတိပေးချက်",
+        safetyAlertModalSubtitle: "အရေးကြီးသော ကျန်းမာရေးနှင့် လျှပ်စစ်သတိပေးချက်",
+        safetyAlertModalText: "ဤအချိန်ဇယားသည် YESC ၏ အလှည့်ကျ ဓာတ်အားပေးအစီအစဉ်ဖြစ်ပြီး အရေးပေါ်လိုင်းချို့ယွင်းမှုနှင့် ပြင်ဆင်မှုများကြောင့် အချိန်ပြောင်းလဲနိုင်ပါသည်။ အောက်ဆီဂျင်စက်နှင့် အအေးခန်းဆေးဝါးများကဲ့သို့ အသက်အန္တရာယ် အရေးကြီးသော ကျန်းမာရေးသုံးပစ္စည်းများအတွက် သီးသန့် အရန်မီးစက် သို့မဟုတ် အင်ဗာတာ မပါရှိဘဲ ဤဇယားတစ်ခုတည်းအပေါ် လုံးဝမှီခိုခြင်း မပြုကြပါရန် သတိပေးအပ်ပါသည်။",
+        safetyAlertAckBtn: "နားလည်သဘောပေါက်ပါသည်",
+        // FAQ & SEO Knowledge Base
+        faqTitle: "မကြာခဏ မေးလေ့ရှိသော မေးခွန်းများ (မီးပျက်ချိန် / EPC လမ်းညွှန်)",
+        faqSubtitle: "ရန်ကုန် လျှပ်စစ်မီး အချိန်ဇယားနှင့် မီးပျက်ချိန် (Mee Pyt / Mee Pyat) ဆိုင်ရာ အမေးအဖြေများ",
+        faqQ1: "ရန်ကုန် မီးပျက်ချိန် (Mee Pyt / Mee Pyat) ဇယားကို မည်သို့ စစ်ဆေးနိုင်သနည်း?",
+        faqA1: "YESC မှ ရန်ကုန်မြို့နယ်များကို အုပ်စု A နှင့် အုပ်စု B ဟူ၍ ခွဲခြားထားပြီး နံနက် ၀၅:၀၀ မှ ည ၂၁:၀၀ အထိ ၄ နာရီစီ အလှည့်ကျ မီးပေးဝေပါသည်။ ညဉ့် ၂၁:၀၀ မှ နံနက် ၀၅:၀၀ အထိ အုပ်စုအားလုံး မီးမပျက်ပါ (No Loadshed)။ ဤဝဘ်ဆိုက်တွင် သင့်အုပ်စုကို ရွေးချယ်၍ မီးလာချိန်နှင့် မီးပျက်ချိန်များကို တိုက်ရိုက် ကြည့်ရှုနိုင်ပါသည်။",
+        faqQ2: "YESC နှင့် EPC မီးပျက်ချိန် (Electric Breakout) နာရီများမှာ မည်သည့်အချိန်များ ဖြစ်သနည်း?",
+        faqA2: "တရားဝင် အချိန်ဇယားအရ နေ့ခင်းပိုင်းတွင် ၀၅:၀၀ - ၀၉:၀၀၊ ၀၉:၀၀ - ၁၃:၀၀၊ ၁၃:၀၀ - ၁၇:၀၀ နှင့် ၁၇:၀၀ - ၂၁:၀၀ ဟူ၍ ၄ နာရီစီ အလှည့်ကျ ပေးဝေပါသည်။ အထက်ပါ ၂၄ နာရီ အနှစ်ချုပ်ဘားတွင် သင့်အုပ်စု မီးရရှိမည့်အချိန်နှင့် မီးပျက်မည့်အချိန်များကို အလွယ်တကူ စစ်ဆေးနိုင်ပါသည်။",
+        faqQ3: "ရန်ကုန် EPC နှင့် YESC အခေါ်အဝေါ် ကွာခြားချက်မှာ အဘယ်နည်း?",
+        faqA3: "ပြည်သူလူထုအနေဖြင့် မြို့နယ် လျှပ်စစ်ရုံးနှင့် မီးလိုင်းများကို အလွယ်တကူ 'အီးပီစီ' (EPC) ဟု အသုံးများကြပြီး၊ ရန်ကုန်တိုင်းအတွင်း တရားဝင် ဓာတ်အားပေးဝေသော ဌာနမှာ YESC (ရန်ကုန် လျှပ်စစ်ဓာတ်အားပေးရေးကော်ပိုရေးရှင်း) ဖြစ်ပါသည်။ အခေါ်အဝေါ် ကွဲပြားသော်လည်း တူညီသော လျှပ်စစ်ဓာတ်အားပေးစနစ်ကို ရည်ညွှန်းခြင်း ဖြစ်ပါသည်။",
+        faqQ4: "အရေးပေါ် မီးပျက်ခြင်း (Electric Breakout) နှင့် ဓာတ်ကြိုး ချို့ယွင်းမှုများအတွက် မည်သည့်နေရာသို့ ဆက်သွယ်ရမည်နည်း?",
+        faqA4: "အရေးပေါ် မီးလိုင်းချို့ယွင်းမှု၊ ဓာတ်ကြိုးပြတ်ကျမှုနှင့် ထရန်စဖော်မာ မီးပွားထွက်မှုများအတွက် YESC ၏ ၂၄ နာရီ အရေးပေါ် ဟော့လိုင်းဖုန်း <strong>၁၉၅၀</strong> သို့ တိုက်ရိုက် ဆက်သွယ်အကြောင်းကြားနိုင်သလို၊ မိမိမြို့နယ် EPC ရုံးများသို့လည်း ဆက်သွယ်နိုင်ပါသည်။",
         emergencyBtn: "YESC ဖုန်းခေါ်ရန် (၁၉၅၀)",
         safetyTipsBtn: "ဘေးကင်းရေး လမ်းညွှန်ချက်များ",
         settingsBtn: "ဆက်တင်နှင့် လျှို့ဝှက်ချက်",
@@ -291,7 +385,8 @@ let currentVersionId = localStorage.getItem('ygn_schedule_version') || '2026-10'
 let currentLang = localStorage.getItem('ygn_lang') || 'en';
 let currentTheme = localStorage.getItem('ygn_theme') || 'system';
 let currentGroup = localStorage.getItem('selectedGroup') || 'A';
-let dayOffset = 0; // -1 = yesterday, 0 = today, 1 = tomorrow
+let dayOffset = 0; // Days relative to today (bounded Oct 1 to Nov 30, 2026)
+let calendarActiveMonth = 9; // 9 = October (0-indexed), 10 = November
 let lastAnnouncedStatus = "";
 
 // Ensure selected group exists in the current version
@@ -314,7 +409,7 @@ const SelfAnalytics = {
     detectDeviceType() {
         const ua = (navigator.userAgent || '').toLowerCase();
         const width = window.innerWidth || (window.screen ? window.screen.width : 0) || 0;
-        
+
         // 1. Check Tablet (iPad, Android tablet UA, or tablet screen sizes with touch support)
         const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk)/i.test(ua)
             || (width >= 640 && width <= 1024 && ('ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)));
@@ -698,7 +793,7 @@ function pingServerAnalytics() {
                 headers: { 'Content-Type': 'application/json' },
                 body: payload,
                 keepalive: true
-            }).catch(() => {});
+            }).catch(() => { });
         }
     } catch (e) {
         // Fails safely on static hosts
@@ -884,6 +979,8 @@ function setScheduleVersion(versionId) {
     sanitizeGroupSelection();
     updateGroupTabsVisibility();
     populateWelcomeGroupSelect();
+    populateWelcomeGroupGrid();
+    updateGuideQuickButtons();
     updateVersionBadgeUI();
     updateFullDisplay();
     renderScheduleList(currentGroup, getMyanmarTime());
@@ -931,6 +1028,103 @@ function populateWelcomeGroupSelect() {
 }
 
 /**
+ * Populates interactive cards in the welcome modal
+ */
+function populateWelcomeGroupGrid() {
+    const grid = document.getElementById('welcome-group-grid');
+    if (!grid) return;
+    const config = SCHEDULE_VERSIONS[currentVersionId];
+    grid.innerHTML = config.groups.map(g => {
+        const isSelected = (g === currentGroup);
+        const groupLabel = (currentLang === 'my') ? `အုပ်စု ${g}` : `Group ${g}`;
+        const subLabel = (currentLang === 'my') ? `လူနေရပ်ကွက်ဇုန်` : `Residential Zone`;
+        return `
+            <button type="button" class="welcome-group-card ${isSelected ? 'is-selected' : ''}" data-group="${g}" role="radio" aria-checked="${isSelected}">
+                <div class="welcome-group-letter">${g}</div>
+                <div class="welcome-group-info">
+                    <strong>${groupLabel}</strong>
+                    <span>${subLabel}</span>
+                </div>
+                <div class="welcome-check-circle" aria-hidden="true">
+                    <i class="fas fa-check"></i>
+                </div>
+            </button>
+        `;
+    }).join('');
+
+    grid.querySelectorAll('.welcome-group-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const grp = card.getAttribute('data-group');
+            grid.querySelectorAll('.welcome-group-card').forEach(c => {
+                c.classList.remove('is-selected');
+                c.setAttribute('aria-checked', 'false');
+            });
+            card.classList.add('is-selected');
+            card.setAttribute('aria-checked', 'true');
+            const sel = document.getElementById('welcome-group-select');
+            if (sel) sel.value = grp;
+        });
+    });
+}
+
+/**
+ * Updates quick select buttons in the first user guide box
+ */
+function updateGuideQuickButtons() {
+    const container = document.querySelector('.guide-quick-btns');
+    if (!container) return;
+    const config = SCHEDULE_VERSIONS[currentVersionId];
+    container.innerHTML = config.groups.map(g => {
+        const isSelected = (g === currentGroup);
+        const label = (currentLang === 'my') ? `အုပ်စု ${g}` : `Group ${g}`;
+        return `
+            <button type="button" class="guide-group-btn ${isSelected ? 'active' : ''}" data-group="${g}">
+                ${isSelected ? '✓ ' : ''}${label}
+            </button>
+        `;
+    }).join('');
+
+    container.querySelectorAll('.guide-group-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const g = btn.getAttribute('data-group');
+            if (g) {
+                selectGroup(g);
+            }
+        });
+    });
+}
+
+/**
+ * Dismisses the first user guide box and saves choice
+ */
+function dismissGuideBox() {
+    const box = document.getElementById('first-user-guide');
+    if (box) {
+        box.classList.add('is-dismissing');
+        setTimeout(() => {
+            box.classList.add('is-hidden');
+            box.classList.remove('is-dismissing');
+        }, 300);
+    }
+    localStorage.setItem('ygn_guide_dismissed', 'true');
+}
+
+/**
+ * Shows/re-opens the first user guide box
+ */
+function showGuideBox() {
+    const box = document.getElementById('first-user-guide');
+    if (box) {
+        box.classList.remove('is-hidden');
+        box.classList.add('is-highlighted');
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        setTimeout(() => {
+            box.classList.remove('is-highlighted');
+        }, 1500);
+    }
+}
+
+/**
  * Sets current language and updates all localized elements
  */
 function setLanguage(lang) {
@@ -939,7 +1133,7 @@ function setLanguage(lang) {
     document.documentElement.lang = (lang === 'my') ? 'my' : 'en';
 
     const t = I18N[lang];
-    
+
     // Header & Meta
     document.getElementById('app-title').textContent = t.appTitle;
     document.getElementById('app-subtitle').textContent = t.appSubtitle;
@@ -975,17 +1169,103 @@ function setLanguage(lang) {
     document.getElementById('privacy-link').textContent = t.settingsBtn;
 
     // Modal elements
-    document.getElementById('welcome-modal-title').textContent = t.selectGroup;
-    document.getElementById('welcome-modal-desc').textContent = t.groupSelectPrompt;
-    document.getElementById('welcome-confirm-btn').textContent = t.confirmBtn;
+    const welcomeTitle = document.getElementById('welcome-modal-title');
+    if (welcomeTitle) welcomeTitle.textContent = t.welcomeModalTitle || t.selectGroup;
+    const welcomeSubtitle = document.getElementById('welcome-modal-subtitle');
+    if (welcomeSubtitle) welcomeSubtitle.textContent = t.welcomeModalSubtitle;
+    const welcomeDesc = document.getElementById('welcome-modal-desc');
+    if (welcomeDesc) welcomeDesc.textContent = t.groupSelectPrompt;
+    const welcomeConfirmText = document.getElementById('welcome-confirm-text');
+    if (welcomeConfirmText) welcomeConfirmText.textContent = t.confirmBtn;
+    const welcomeLaterText = document.getElementById('welcome-later-text');
+    if (welcomeLaterText) welcomeLaterText.textContent = t.selectLaterBtn;
+    const welcomeHelpTitle = document.getElementById('welcome-help-title');
+    if (welcomeHelpTitle) welcomeHelpTitle.textContent = t.welcomeHelpTitle;
+    const welcomeHelpDesc = document.getElementById('welcome-help-desc');
+    if (welcomeHelpDesc) welcomeHelpDesc.textContent = t.welcomeHelpDesc;
     document.getElementById('version-modal-title').textContent = t.versionModalTitle;
 
+    // User Guide Box elements
+    const guideBadge = document.getElementById('guide-badge-text');
+    if (guideBadge) guideBadge.textContent = t.guideBadge;
+    const guideHeading = document.getElementById('guide-heading');
+    if (guideHeading) guideHeading.textContent = t.guideTitle;
+    const guideDesc = document.getElementById('guide-desc');
+    if (guideDesc) guideDesc.textContent = t.guideDesc;
+    const gStep1Title = document.getElementById('guide-step1-title');
+    if (gStep1Title) gStep1Title.textContent = t.guideStep1Title;
+    const gStep1Desc = document.getElementById('guide-step1-desc');
+    if (gStep1Desc) gStep1Desc.textContent = t.guideStep1Desc;
+    const gStep2Title = document.getElementById('guide-step2-title');
+    if (gStep2Title) gStep2Title.textContent = t.guideStep2Title;
+    const gStep2Desc = document.getElementById('guide-step2-desc');
+    if (gStep2Desc) gStep2Desc.textContent = t.guideStep2Desc;
+    const gStep3Title = document.getElementById('guide-step3-title');
+    if (gStep3Title) gStep3Title.textContent = t.guideStep3Title;
+    const gStep3Desc = document.getElementById('guide-step3-desc');
+    if (gStep3Desc) gStep3Desc.textContent = t.guideStep3Desc;
+    const gQuickLabel = document.getElementById('guide-quick-label');
+    if (gQuickLabel) gQuickLabel.textContent = t.guideQuickLabel;
+    const gGotIt = document.getElementById('guide-got-it-text');
+    if (gGotIt) gGotIt.textContent = t.guideGotItBtn;
+    const gHelpBtnText = document.getElementById('group-help-btn-text');
+    if (gHelpBtnText) gHelpBtnText.textContent = t.guideHelpBtn;
+    const gTabsHint = document.getElementById('group-tabs-hint-text');
+    if (gTabsHint) gTabsHint.textContent = t.groupTabsHint;
+
+    // Calendar & Navigation elements
+    const calBtnText = document.getElementById('calendar-btn-text');
+    if (calBtnText) calBtnText.textContent = t.calendarBtnText;
+    const calModalTitle = document.getElementById('calendar-modal-title');
+    if (calModalTitle) calModalTitle.textContent = t.calendarModalTitle;
+    const calModalSubtitle = document.getElementById('calendar-modal-subtitle');
+    if (calModalSubtitle) calModalSubtitle.textContent = t.calendarModalSubtitle;
+    const calTabOctText = document.getElementById('cal-tab-oct-text');
+    if (calTabOctText) calTabOctText.textContent = t.calendarTabOct;
+    const calTabNovText = document.getElementById('cal-tab-nov-text');
+    if (calTabNovText) calTabNovText.textContent = t.calendarTabNov;
+
+    // Safety Alert Modal elements
+    const safetyModalTitle = document.getElementById('safety-alert-title');
+    if (safetyModalTitle) safetyModalTitle.textContent = t.safetyAlertModalTitle;
+    const safetyModalSubtitle = document.getElementById('safety-alert-subtitle');
+    if (safetyModalSubtitle) safetyModalSubtitle.textContent = t.safetyAlertModalSubtitle;
+    const safetyModalDesc = document.getElementById('safety-alert-desc');
+    if (safetyModalDesc) safetyModalDesc.textContent = t.safetyAlertModalText;
+    const safetyAckText = document.getElementById('safety-alert-ack-text');
+    if (safetyAckText) safetyAckText.textContent = t.safetyAlertAckBtn;
+
+    // FAQ elements
+    const faqTitleEl = document.getElementById('faq-title');
+    if (faqTitleEl) faqTitleEl.textContent = t.faqTitle;
+    const faqSubtitleEl = document.getElementById('faq-subtitle');
+    if (faqSubtitleEl) faqSubtitleEl.textContent = t.faqSubtitle;
+    const faqQ1El = document.getElementById('faq-q1');
+    if (faqQ1El) faqQ1El.textContent = t.faqQ1;
+    const faqA1El = document.getElementById('faq-a1');
+    if (faqA1El) faqA1El.textContent = t.faqA1;
+    const faqQ2El = document.getElementById('faq-q2');
+    if (faqQ2El) faqQ2El.textContent = t.faqQ2;
+    const faqA2El = document.getElementById('faq-a2');
+    if (faqA2El) faqA2El.textContent = t.faqA2;
+    const faqQ3El = document.getElementById('faq-q3');
+    if (faqQ3El) faqQ3El.textContent = t.faqQ3;
+    const faqA3El = document.getElementById('faq-a3');
+    if (faqA3El) faqA3El.textContent = t.faqA3;
+    const faqQ4El = document.getElementById('faq-q4');
+    if (faqQ4El) faqQ4El.textContent = t.faqQ4;
+    const faqA4El = document.getElementById('faq-a4');
+    if (faqA4El) faqA4El.innerHTML = t.faqA4;
+
     populateWelcomeGroupSelect();
+    populateWelcomeGroupGrid();
+    updateGuideQuickButtons();
     updateVersionBadgeUI();
 
     // Re-render schedule and active state
     if (currentGroup) {
         updateFullDisplay();
+        renderScheduleList(currentGroup, getMyanmarTime());
     }
 }
 
@@ -996,7 +1276,7 @@ function applyTheme(theme) {
     currentTheme = theme;
     localStorage.setItem('ygn_theme', theme);
 
-    const isDark = (theme === 'dark') || 
+    const isDark = (theme === 'dark') ||
         (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
     if (isDark) {
@@ -1029,7 +1309,7 @@ function renderTimeline(group, mmNow) {
     const needle = document.getElementById('timeline-needle');
     const needleLabel = document.getElementById('timeline-needle-label');
     if (!container || !needle || !needleLabel) return;
-    
+
     // Proportional grid columns based on slot durations
     // Oct 2026: 4h, 4h, 4h, 4h, 8h => 1fr 1fr 1fr 1fr 2fr
     // Apr 2025: 4h x 6 => repeat(6, 1fr)
@@ -1055,7 +1335,7 @@ function renderTimeline(group, mmNow) {
         seg.className = `timeline-segment ${hasPower ? 'is-power-on' : 'is-power-off'}`;
         seg.setAttribute('role', 'cell');
         seg.setAttribute('aria-label', `${slot.label}: ${hasPower ? I18N[currentLang].timelineLegendOn : I18N[currentLang].timelineLegendOff}`);
-        
+
         let labelExtra = hasPower ? '⚡' : '✖';
         if (slot.isNoLoadshed) labelExtra = '⚡ No Loadshed';
 
@@ -1066,10 +1346,10 @@ function renderTimeline(group, mmNow) {
     // Needle position (5:00 AM = 0%, next day 5:00 AM = 100%)
     const currentH = mmNow.getHours();
     const currentM = mmNow.getMinutes();
-    let minsSince5AM = (currentH >= 5) 
-        ? ((currentH - 5) * 60 + currentM) 
+    let minsSince5AM = (currentH >= 5)
+        ? ((currentH - 5) * 60 + currentM)
         : ((currentH + 19) * 60 + currentM);
-    
+
     let percentage = (minsSince5AM / (24 * 60)) * 100;
     percentage = Math.max(0, Math.min(100, percentage));
 
@@ -1079,7 +1359,7 @@ function renderTimeline(group, mmNow) {
 }
 
 /**
- * Updates Schedule list for selected day offset (-1, 0, 1)
+ * Updates Schedule list for selected day offset (Supports Oct & Nov 2026 range)
  */
 function renderScheduleList(group, mmNow) {
     const config = SCHEDULE_VERSIONS[currentVersionId];
@@ -1094,12 +1374,39 @@ function renderScheduleList(group, mmNow) {
     const t = I18N[currentLang];
     if (!titleEl || !subTitleEl || !listEl) return;
 
-    if (dayOffset === 0) titleEl.textContent = t.today;
-    else if (dayOffset === -1) titleEl.textContent = t.yesterday;
-    else if (dayOffset === 1) titleEl.textContent = t.tomorrow;
+    if (dayOffset === 0) {
+        titleEl.textContent = t.today;
+    } else if (dayOffset === -1) {
+        titleEl.textContent = t.yesterday;
+    } else if (dayOffset === 1) {
+        titleEl.textContent = t.tomorrow;
+    } else {
+        const dateFormatted = targetDate.toLocaleDateString(currentLang === 'my' ? 'my-MM' : 'en-US', { month: 'short', day: 'numeric' });
+        titleEl.textContent = `${t.dailySchedule} - ${dateFormatted}`;
+    }
 
     const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
     subTitleEl.textContent = targetDate.toLocaleDateString(currentLang === 'my' ? 'my-MM' : 'en-US', options);
+
+    // Dynamic Previous & Next day button labels for improved visibility
+    const prevBtnText = document.getElementById('prev-day-btn-text');
+    const nextBtnText = document.getElementById('next-day-btn-text');
+    if (prevBtnText) {
+        prevBtnText.textContent = (dayOffset === 0) ? t.prevDayYesterday : t.prevDay;
+    }
+    if (nextBtnText) {
+        nextBtnText.textContent = (dayOffset === 0) ? t.nextDayTomorrow : t.nextDay;
+    }
+
+    // Return to Today button toggle
+    const returnTodayBtn = document.getElementById('return-today-btn');
+    if (returnTodayBtn) {
+        returnTodayBtn.style.display = (dayOffset === 0) ? 'none' : 'inline-flex';
+    }
+    const returnTodayText = document.getElementById('return-today-text');
+    if (returnTodayText) {
+        returnTodayText.textContent = t.returnToday;
+    }
 
     listEl.innerHTML = '';
     config.timeSlots.forEach((slot, index) => {
@@ -1108,7 +1415,7 @@ function renderScheduleList(group, mmNow) {
 
         const li = document.createElement('li');
         li.className = `schedule-item ${hasPower ? 'on' : 'off'}`;
-        
+
         let extraBadgeNote = "";
         if (slot.isNoLoadshed) {
             extraBadgeNote = `<span style="font-size:0.75rem; margin-left:0.35rem; opacity:0.85; font-weight:normal;">(${t.noLoadshedNote})</span>`;
@@ -1130,8 +1437,131 @@ function renderScheduleList(group, mmNow) {
 
     const prevBtn = document.getElementById('prev-day-btn');
     const nextBtn = document.getElementById('next-day-btn');
-    if (prevBtn) prevBtn.disabled = (dayOffset <= -1);
-    if (nextBtn) nextBtn.disabled = (dayOffset >= 1);
+    // Navigation bounds: 2026-10-01 to 2026-11-30
+    const minDate = new Date(2026, 9, 1);
+    const maxDate = new Date(2026, 10, 30);
+    const testPrev = new Date(targetDate);
+    testPrev.setDate(testPrev.getDate() - 1);
+    testPrev.setHours(0, 0, 0, 0);
+    const testNext = new Date(targetDate);
+    testNext.setDate(testNext.getDate() + 1);
+    testNext.setHours(0, 0, 0, 0);
+
+    if (prevBtn) prevBtn.disabled = (testPrev < minDate);
+    if (nextBtn) nextBtn.disabled = (testNext > maxDate);
+}
+
+/**
+ * Renders Calendar View Modal (Two Months: October & November 2026)
+ */
+function renderCalendarUI(monthIndex = calendarActiveMonth) {
+    calendarActiveMonth = monthIndex;
+    const gridEl = document.getElementById('calendar-days-grid');
+    if (!gridEl) return;
+
+    const t = I18N[currentLang];
+    const isEn = (currentLang === 'en');
+    const mmNow = getMyanmarTime();
+    const todayYear = mmNow.getFullYear();
+    const todayMonth = mmNow.getMonth();
+    const todayDate = mmNow.getDate();
+
+    // Update active tab buttons
+    const tabOct = document.getElementById('cal-tab-oct');
+    const tabNov = document.getElementById('cal-tab-nov');
+    if (tabOct) tabOct.className = `calendar-month-tab ${monthIndex === 9 ? 'is-active' : ''}`;
+    if (tabNov) tabNov.className = `calendar-month-tab ${monthIndex === 10 ? 'is-active' : ''}`;
+
+    // Update group info banner
+    const groupInfoEl = document.getElementById('cal-info-group');
+    if (groupInfoEl) {
+        groupInfoEl.innerHTML = `${t.groupLabel} <strong>${currentGroup === 'A' ? t.groupA : t.groupB}</strong>`;
+    }
+    const noticeEl = document.getElementById('cal-info-notice');
+    if (noticeEl) noticeEl.textContent = t.calendarPrompt;
+
+    // Weekdays header
+    const weekdaysEl = document.getElementById('calendar-weekdays');
+    if (weekdaysEl) {
+        const days = isEn
+            ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            : ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'];
+        weekdaysEl.innerHTML = days.map(d => `<span>${d}</span>`).join('');
+    }
+
+    gridEl.innerHTML = '';
+    const year = 2026;
+    const firstDay = new Date(year, monthIndex, 1).getDay(); // 0 = Sun
+    const daysInMonth = (monthIndex === 9) ? 31 : 30; // Oct = 31, Nov = 30
+
+    // Leading empty cells
+    for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'calendar-day-cell is-empty';
+        gridEl.appendChild(emptyCell);
+    }
+
+    // Generate days of month
+    for (let day = 1; day <= daysInMonth; day++) {
+        const cellDate = new Date(year, monthIndex, day);
+        const dateKey = formatDateKey(cellDate);
+        const pattern = getSchedulePatternForDate(dateKey, '2026-10');
+
+        // Check slots for currentGroup (Slot 0 is 05:00-09:00, Slot 1 is 09:00-13:00)
+        const has5amPower = pattern[0].split('+').includes(currentGroup);
+        const has9amPower = pattern[1].split('+').includes(currentGroup);
+
+        const isToday = (year === todayYear && monthIndex === todayMonth && day === todayDate);
+
+        // Check if matches currently selected day
+        const curTarget = new Date(mmNow);
+        curTarget.setDate(mmNow.getDate() + dayOffset);
+        const isSelected = (curTarget.getFullYear() === year && curTarget.getMonth() === monthIndex && curTarget.getDate() === day);
+
+        const cell = document.createElement('div');
+        cell.className = `calendar-day-cell ${isToday ? 'is-today' : ''} ${isSelected ? 'is-selected' : ''}`;
+        cell.setAttribute('role', 'button');
+        cell.setAttribute('tabindex', '0');
+        cell.setAttribute('aria-label', `${dateKey}, ${isToday ? 'Today' : ''}`);
+
+        let chipHtml = '';
+        if (has5amPower) {
+            chipHtml = `<span class="cal-power-chip slot-5am">⚡ 05:00 ${t.calendarPowerOnBadge}</span>`;
+        } else if (has9amPower) {
+            chipHtml = `<span class="cal-power-chip slot-9am">⚡ 09:00 ${t.calendarPowerOnBadge}</span>`;
+        }
+
+        cell.innerHTML = `
+            <div class="cal-day-header">
+                <span class="cal-day-num">${day}</span>
+                ${isToday ? `<span class="cal-today-pill">${isEn ? 'TODAY' : 'ယနေ့'}</span>` : ''}
+            </div>
+            ${chipHtml}
+        `;
+
+        cell.addEventListener('click', () => {
+            const mmToday = getMyanmarTime();
+            mmToday.setHours(0, 0, 0, 0);
+            const targetMidnight = new Date(year, monthIndex, day);
+            targetMidnight.setHours(0, 0, 0, 0);
+            const diffDays = Math.round((targetMidnight - mmToday) / 86400000);
+            dayOffset = diffDays;
+            renderScheduleList(currentGroup, getMyanmarTime());
+            closeModal('calendar-modal');
+        });
+
+        gridEl.appendChild(cell);
+    }
+}
+
+/**
+ * Checks and opens Safety & Medical Notice Alert Box for first-time users
+ */
+function checkSafetyAlertNotice() {
+    const isAcknowledged = localStorage.getItem('ygn_safety_acknowledged');
+    if (!isAcknowledged) {
+        openModal('safety-alert-modal');
+    }
 }
 
 /**
@@ -1170,8 +1600,8 @@ function updateFullDisplay() {
         lastAnnouncedStatus = currentStatusSignature;
         const liveRegion = document.getElementById('a11y-live-status');
         if (liveRegion) {
-            liveRegion.textContent = hasPower 
-                ? `${t.groupLabel} ${currentGroup}: ${t.statusOn}` 
+            liveRegion.textContent = hasPower
+                ? `${t.groupLabel} ${currentGroup}: ${t.statusOn}`
                 : `${t.groupLabel} ${currentGroup}: ${t.statusOff}`;
         }
     }
@@ -1185,7 +1615,7 @@ function updateFullDisplay() {
     if (digitsEl) digitsEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
     if (progressFill) {
-        const maxWindow = hasPower 
+        const maxWindow = hasPower
             ? ((currentSlot && currentSlot.hours) ? (currentSlot.hours * 3600) : (4 * 3600))
             : (4 * 3600);
         const progressPct = Math.max(0, Math.min(100, ((maxWindow - totalSeconds) / maxWindow) * 100));
@@ -1209,7 +1639,7 @@ function updateFullDisplay() {
     try {
         if (statusText) localStorage.setItem('ygn_last_status', statusText.textContent);
         if (digitsEl) localStorage.setItem('ygn_last_timer', digitsEl.textContent);
-    } catch (e) {}
+    } catch (e) { }
 }
 
 /**
@@ -1221,6 +1651,7 @@ function selectGroup(group) {
     SelfAnalytics.recordGroupSelection(group);
     updateFullDisplay();
     renderScheduleList(group, getMyanmarTime());
+    updateGuideQuickButtons();
 }
 
 /**
@@ -1383,7 +1814,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-day-btn');
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            if (dayOffset > -1) {
+            const mmNow = getMyanmarTime();
+            const curDate = new Date(mmNow);
+            curDate.setDate(mmNow.getDate() + dayOffset - 1);
+            curDate.setHours(0, 0, 0, 0);
+            if (curDate >= new Date(2026, 9, 1)) {
                 dayOffset--;
                 SelfAnalytics.recordDayNavigation(dayOffset);
                 renderScheduleList(currentGroup, getMyanmarTime());
@@ -1393,11 +1828,52 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            if (dayOffset < 1) {
+            const mmNow = getMyanmarTime();
+            const curDate = new Date(mmNow);
+            curDate.setDate(mmNow.getDate() + dayOffset + 1);
+            curDate.setHours(0, 0, 0, 0);
+            if (curDate <= new Date(2026, 10, 30)) {
                 dayOffset++;
                 SelfAnalytics.recordDayNavigation(dayOffset);
                 renderScheduleList(currentGroup, getMyanmarTime());
             }
+        });
+    }
+
+    // Return to Today Button
+    const returnTodayBtn = document.getElementById('return-today-btn');
+    if (returnTodayBtn) {
+        returnTodayBtn.addEventListener('click', () => {
+            dayOffset = 0;
+            renderScheduleList(currentGroup, getMyanmarTime());
+        });
+    }
+
+    // Calendar Modal Button & Month Tabs
+    const calendarToggleBtn = document.getElementById('calendar-toggle-btn');
+    if (calendarToggleBtn) {
+        calendarToggleBtn.addEventListener('click', () => {
+            renderCalendarUI(calendarActiveMonth);
+            openModal('calendar-modal', calendarToggleBtn);
+        });
+    }
+
+    document.getElementById('cal-tab-oct')?.addEventListener('click', () => renderCalendarUI(9));
+    document.getElementById('cal-tab-nov')?.addEventListener('click', () => renderCalendarUI(10));
+
+    // Safety Alert Modal Handlers
+    const safetyAckBtn = document.getElementById('safety-alert-ack-btn');
+    if (safetyAckBtn) {
+        safetyAckBtn.addEventListener('click', () => {
+            localStorage.setItem('ygn_safety_acknowledged', 'true');
+            closeModal('safety-alert-modal');
+        });
+    }
+
+    const safetyCard = document.querySelector('.safety-alert');
+    if (safetyCard) {
+        safetyCard.addEventListener('click', () => {
+            openModal('safety-alert-modal');
         });
     }
 
@@ -1467,7 +1943,7 @@ window.addEventListener('DOMContentLoaded', () => {
         privacyLink.addEventListener('click', () => {
             document.getElementById('settings-modal-title').textContent = I18N[currentLang].settingsTitle;
             document.getElementById('settings-modal-content').innerHTML = I18N[currentLang].settingsBody;
-            
+
             document.getElementById('set-theme-light')?.addEventListener('click', () => applyTheme('light'));
             document.getElementById('set-theme-dark')?.addEventListener('click', () => applyTheme('dark'));
             document.getElementById('set-theme-system')?.addEventListener('click', () => applyTheme('system'));
@@ -1491,10 +1967,26 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 11. Initial Welcome Modal or Load Saved Group
+    // 11. First-Time User Guide & Welcome Modal Initialization
+    const guideBox = document.getElementById('first-user-guide');
+    if (localStorage.getItem('ygn_guide_dismissed') === 'true') {
+        guideBox?.classList.add('is-hidden');
+    } else {
+        guideBox?.classList.remove('is-hidden');
+    }
+
+    document.getElementById('guide-dismiss-btn')?.addEventListener('click', dismissGuideBox);
+    document.getElementById('guide-got-it-btn')?.addEventListener('click', dismissGuideBox);
+    document.getElementById('group-help-btn')?.addEventListener('click', showGuideBox);
+
     populateWelcomeGroupSelect();
-    if (!localStorage.getItem('selectedGroup')) {
+    populateWelcomeGroupGrid();
+    updateGuideQuickButtons();
+
+    const hasStoredGroup = localStorage.getItem('selectedGroup');
+    if (!hasStoredGroup) {
         openModal('welcome-modal');
+
         const welcomeConfirm = document.getElementById('welcome-confirm-btn');
         if (welcomeConfirm) {
             welcomeConfirm.addEventListener('click', () => {
@@ -1502,11 +1994,36 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (sel) {
                     selectGroup(sel);
                     closeModal('welcome-modal');
+                    checkSafetyAlertNotice();
+                }
+            });
+        }
+
+        const welcomeLaterBtn = document.getElementById('welcome-later-btn');
+        if (welcomeLaterBtn) {
+            welcomeLaterBtn.addEventListener('click', () => {
+                selectGroup('A');
+                localStorage.setItem('ygn_group_deferred', 'true');
+                closeModal('welcome-modal');
+                showGuideBox();
+                checkSafetyAlertNotice();
+            });
+        }
+
+        const welcomeCloseBtn = document.getElementById('welcome-close-btn');
+        if (welcomeCloseBtn) {
+            welcomeCloseBtn.addEventListener('click', () => {
+                if (!localStorage.getItem('selectedGroup')) {
+                    selectGroup('A');
+                    localStorage.setItem('ygn_group_deferred', 'true');
+                    showGuideBox();
+                    checkSafetyAlertNotice();
                 }
             });
         }
     } else {
         selectGroup(currentGroup);
+        checkSafetyAlertNotice();
     }
 
     // 12. Owner Admin Mode & Secret Backdoor (5-click on brand badge or ?admin URL)

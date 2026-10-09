@@ -1,12 +1,12 @@
 // Cache name
-const CACHE_NAME = 'electricity-checker-v10-sitemap-analytics';
+const CACHE_NAME = 'electricity-checker-v15-seo-sitemap';
 
 // Core assets to pre-cache
 const urlsToCache = [
     './',
     './index.html',
-    './style.css',
-    './script.js',
+    './style.css?v=15',
+    './script.js?v=15',
     './manifest.json',
     './sitemap.xml',
     './icon-192.png',

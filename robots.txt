@@ -1,6 +1,6 @@
-# robots.txt for Yangon Electricity Schedule (YESC)
+# robots.txt for Yangon Electricity Schedule (YESC & Yangon EPC Mee Pyt Tracker)
 User-agent: *
 Allow: /
 
-# Google Search Console Sitemap Location
+# Google Search Console & Bing Webmaster Sitemap
 Sitemap: https://eletricygn.netlify.app/sitemap.xml

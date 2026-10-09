@@ -231,6 +231,7 @@ button, select, a, input {
         display: grid;
         grid-template-columns: 1fr 1.15fr;
         grid-template-areas:
+            "guide guide"
             "groups groups"
             "timeline timeline"
             "status schedule"
@@ -241,6 +242,7 @@ button, select, a, input {
         align-items: start;
     }
 
+    .area-guide { grid-area: guide; }
     .area-groups { grid-area: groups; }
     .area-timeline { grid-area: timeline; }
     .area-status { grid-area: status; }
@@ -327,10 +329,54 @@ button, select, a, input {
     gap: 0.5rem;
 }
 
+.group-tabs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .group-tabs-label {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-secondary);
+}
+
+.group-help-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    border: 1px solid transparent;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.group-help-btn:hover {
+    background-color: var(--brand-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.group-tabs-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+.group-tabs-hint i {
+    color: var(--brand-primary);
+    font-size: 0.8125rem;
+    flex-shrink: 0;
 }
 
 .group-tabs {
@@ -613,11 +659,22 @@ button, select, a, input {
     margin-bottom: 0.75rem;
 }
 
+.schedule-nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.2rem;
+    flex: 1;
+    min-width: 130px;
+}
+
 .schedule-title {
     font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
     text-align: center;
+    line-height: 1.3;
 }
 
 .schedule-subtitle {
@@ -629,24 +686,79 @@ button, select, a, input {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    gap: 0.4rem;
+    min-width: 2.5rem;
+    width: auto;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
     border-radius: var(--radius-md);
     background-color: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-day-btn:hover:not(:disabled) {
-    background-color: var(--border-subtle);
-    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
 }
 
 .nav-day-btn:disabled {
     opacity: 0.35;
     cursor: not-allowed;
+}
+
+.return-today-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.25rem;
+}
+
+.return-today-btn:hover {
+    background-color: var(--brand-primary);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.calendar-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    background-color: var(--bg-elevated);
+    border: 1.5px solid var(--border-strong);
+    color: var(--brand-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 0.75rem;
+    width: 100%;
+}
+
+.calendar-toggle-btn:hover {
+    background-color: var(--brand-light);
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
 }
 
 .schedule-card {
@@ -843,9 +955,10 @@ dialog {
     border: none;
     background: transparent;
     padding: 0;
-    max-width: 90vw;
-    width: 28rem;
+    max-width: min(92vw, 30rem);
+    width: 100%;
     margin: auto;
+    box-sizing: border-box;
 }
 
 dialog::backdrop {
@@ -1194,6 +1307,751 @@ dialog::backdrop {
 html.dark .version-card.is-active .version-spec-chip {
     background-color: rgba(37, 99, 235, 0.2);
     color: #93c5fd;
+}
+
+/* 19. First-Time User Guide & Group Assistant Box */
+.user-guide-box {
+    background: linear-gradient(135deg, rgba(239, 246, 255, 0.95) 0%, var(--bg-card) 100%);
+    border: 1.5px solid #bfdbfe;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+html.dark .user-guide-box {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, var(--bg-card) 100%);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+.user-guide-box.is-hidden {
+    display: none !important;
+}
+
+.user-guide-box.is-dismissing {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+}
+
+.user-guide-box.is-highlighted {
+    animation: guideHighlight 1.5s ease;
+}
+
+@keyframes guideHighlight {
+    0% { transform: scale(1); box-shadow: var(--card-shadow); }
+    30% { transform: scale(1.015); box-shadow: 0 0 0 3px var(--brand-primary), var(--card-shadow-lg); }
+    100% { transform: scale(1); box-shadow: var(--card-shadow); }
+}
+
+.guide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.guide-badge-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.guide-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    width: fit-content;
+}
+
+.guide-title {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.guide-dismiss-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.guide-dismiss-btn:hover {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
+.guide-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+}
+
+.guide-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.guide-step-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.875rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.guide-step-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+}
+
+.guide-step-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-md);
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+}
+
+.guide-step-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.guide-step-text {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.guide-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.guide-quick-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.guide-quick-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.guide-quick-btns {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.guide-group-btn {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.guide-group-btn:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+.guide-group-btn.active {
+    background-color: var(--brand-primary);
+    color: var(--text-inverse);
+    border-color: var(--brand-primary);
+}
+
+.guide-got-it-btn {
+    font-size: 0.8125rem;
+    padding: 0.5rem 1.125rem;
+}
+
+/* 20. Enhanced Welcome Modal Styles */
+.welcome-header-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.welcome-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.welcome-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin: 0.25rem 0;
+}
+
+.welcome-group-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background-color: var(--bg-elevated);
+    border: 2px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    position: relative;
+    width: 100%;
+}
+
+.welcome-group-card:hover {
+    border-color: var(--brand-primary);
+    background-color: var(--bg-card);
+}
+
+.welcome-group-card.is-selected {
+    border-color: var(--brand-primary);
+    background-color: var(--brand-light);
+}
+
+html.dark .welcome-group-card.is-selected {
+    background-color: rgba(37, 99, 235, 0.25);
+}
+
+.welcome-group-letter {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.welcome-group-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.welcome-group-info strong {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+}
+
+.welcome-group-info span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.welcome-check-circle {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.welcome-group-card.is-selected .welcome-check-circle {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #ffffff;
+}
+
+.welcome-help-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 0.875rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.welcome-help-card i {
+    color: var(--brand-primary);
+    font-size: 1rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.welcome-help-card strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.welcome-help-card p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.welcome-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+@media (min-width: 480px) {
+    .welcome-actions {
+        flex-direction: row;
+    }
+}
+
+.welcome-action-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+}
+
+/* 21. Calendar Modal Styles (Oct & Nov 2026) */
+dialog#calendar-modal {
+    max-width: min(46rem, 96vw);
+    width: 100%;
+}
+
+.calendar-modal-content {
+    max-width: 46rem;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 1.25rem;
+}
+
+.calendar-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.calendar-month-tabs {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--bg-elevated);
+    padding: 0.35rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+}
+
+.calendar-month-tab {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.calendar-month-tab:hover {
+    color: var(--text-primary);
+}
+
+.calendar-month-tab.is-active {
+    background-color: var(--bg-card);
+    color: var(--brand-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+}
+
+.calendar-info-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-elevated);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.calendar-info-banner strong {
+    color: var(--brand-primary);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+}
+
+.calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.calendar-day-cell {
+    min-height: 4.1rem;
+    padding: 0.35rem 0.2rem;
+    background-color: var(--bg-elevated);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    user-select: none;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.calendar-day-cell:hover {
+    background-color: var(--bg-card);
+    border-color: var(--brand-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.calendar-day-cell.is-empty {
+    background: transparent;
+    border-color: transparent;
+    cursor: default;
+    pointer-events: none;
+}
+
+.calendar-day-cell.is-today {
+    border-color: var(--brand-primary);
+    background-color: var(--brand-light);
+}
+
+html.dark .calendar-day-cell.is-today {
+    background-color: rgba(37, 99, 235, 0.2);
+}
+
+.calendar-day-cell.is-selected {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px var(--brand-primary);
+    background-color: var(--bg-card);
+}
+
+.cal-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cal-day-num {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.cal-today-pill {
+    font-size: 0.55rem;
+    font-weight: 800;
+    padding: 0.1rem 0.35rem;
+    background-color: var(--brand-primary);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+}
+
+.cal-power-chip {
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.15rem 0.25rem;
+    border-radius: var(--radius-sm);
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cal-power-chip.slot-5am {
+    background-color: var(--power-on-bg);
+    color: var(--power-on-accent);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+html.dark .cal-power-chip.slot-5am {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.cal-power-chip.slot-9am {
+    background-color: rgba(59, 130, 246, 0.12);
+    color: var(--brand-primary);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+html.dark .cal-power-chip.slot-9am {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+/* 22. Safety & Medical Notice Alert Box Styles */
+dialog#safety-alert-modal {
+    max-width: min(34rem, 95vw);
+    width: 100%;
+}
+
+.safety-modal-content {
+    max-width: 34rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 540px) {
+    .calendar-days-grid {
+        gap: 0.2rem;
+    }
+    .calendar-day-cell {
+        min-height: 3.5rem;
+        padding: 0.2rem 0.15rem;
+    }
+    .cal-day-num {
+        font-size: 0.75rem;
+    }
+    .cal-power-chip {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.15rem;
+    }
+    .calendar-weekdays {
+        font-size: 0.7rem;
+    }
+}
+
+.safety-modal-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+    background-color: var(--warning-bg);
+    color: var(--warning-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    border: 1px solid var(--warning-border);
+}
+
+.safety-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.safety-modal-callout {
+    background-color: var(--warning-bg);
+    border: 1.5px solid var(--warning-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    color: var(--warning-text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.safety-alert {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.safety-alert:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--card-shadow);
+}
+
+/* 23. FAQ & SEO Knowledge Section (Mee Pyt, EPC, Electric Breakout) */
+.faq-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.faq-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.85rem;
+}
+
+.faq-header-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+html.dark .faq-header-icon {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+.faq-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.faq-subtitle {
+    font-size: 0.78125rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.faq-item {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-elevated);
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.faq-item[open] {
+    border-color: var(--brand-primary);
+    background-color: var(--bg-card);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-chevron {
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--brand-primary);
+}
+
+.faq-answer {
+    padding: 0 1rem 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.625rem;
 }
 
 /* 17. Reduced Motion Support (WCAG 2.3.3) */

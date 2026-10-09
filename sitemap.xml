@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-  Yangon Electricity Schedule - Sitemap for Google Search Console
+  Yangon Electricity Schedule - Sitemap for Google Search Console & Bing Webmaster
+  Keywords: Mee Pyt, Mee Pyat, Yangon Electric Breakout, Yangon EPC, YESC, Electric Breakout in Yangon
   Live Production URL: https://eletricygn.netlify.app/
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://eletricygn.netlify.app/</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>hourly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eletricygn.netlify.app/" />
     <xhtml:link rel="alternate" hreflang="my" href="https://eletricygn.netlify.app/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eletricygn.netlify.app/" />
+    <image:image>
+      <image:loc>https://eletricygn.netlify.app/icon-512.png</image:loc>
+      <image:title>Yangon Electricity Schedule - Mee Pyt &amp; Electric Breakout Tracker (YESC &amp; EPC)</image:title>
+      <image:caption>Live rotational schedule, Mee Pyt / Mee Pyat outage countdown, and YESC EPC power tracker for Yangon.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://eletricygn.netlify.app/index.html</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>hourly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://eletricygn.netlify.app/index.html" />
     <xhtml:link rel="alternate" hreflang="my" href="https://eletricygn.netlify.app/index.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eletricygn.netlify.app/index.html" />
   </url>
 </urlset>
