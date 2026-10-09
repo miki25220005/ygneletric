@@ -1418,13 +1418,19 @@ function renderScheduleList(group, mmNow) {
 
         let extraBadgeNote = "";
         if (slot.isNoLoadshed) {
-            extraBadgeNote = `<div class="schedule-subnote">${t.noLoadshedNote}</div>`;
+            const cleanNote = t.noLoadshedNote.replace(/^[⚡\s]+/, '');
+            extraBadgeNote = `
+                <div class="schedule-subnote">
+                    <i class="fas fa-bolt schedule-row-icon" aria-hidden="true"></i>
+                    <span class="schedule-subnote-text">${cleanNote}</span>
+                </div>
+            `;
         }
 
         li.innerHTML = `
             <div class="schedule-item-info">
                 <div class="schedule-item-time">
-                    <i class="far fa-clock" aria-hidden="true"></i>
+                    <i class="far fa-clock schedule-row-icon" aria-hidden="true"></i>
                     <span class="schedule-time-range">${slot.label}</span>
                 </div>
                 ${extraBadgeNote}
