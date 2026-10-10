@@ -88,7 +88,7 @@ const I18N = {
         guideStep1Title: "Change Anytime",
         guideStep1Desc: "Easily switch between Group A & Group B anytime using the buttons at the top of the screen.",
         guideStep2Title: "4-Hour Rotation",
-        guideStep2Desc: "Power alternates every 4 hours from 05:00 to 21:00. Overnight (21:00 - 05:00) has NO loadshed for all groups.",
+        guideStep2Desc: "Power alternates every 4 hours from 05:00 to 21:00. Overnight (21:00 - 05:00) has NO loadshed for all groups. When power is ON at 5:00 PM (17:00 - 21:00), it stays ON after 9:00 PM continuously through the night!",
         guideStep3Title: "How to Find Your Group",
         guideStep3Desc: "When your power is currently ON, check which group shows 'Available' here.",
         guideQuickLabel: "Try selecting a group:",
@@ -104,6 +104,7 @@ const I18N = {
         statusSubOn: "Power is scheduled to be active for your group.",
         statusSubOff: "Power is scheduled to be offline for your group.",
         statusSubNoLoadshed: "Overnight period (21:00 - 05:00): No Loadshed for all groups!",
+        statusSubContinuesNight: "Power is active and continues after 9:00 PM through the overnight No Loadshed period!",
         countdownUntilOff: "Time until power turns OFF",
         countdownUntilOn: "Time until next power slot (ON)",
         timelineTitle: "24-Hour Visual Overview",
@@ -142,7 +143,7 @@ const I18N = {
         faqQ1: "How to check today's Mee Pyt / Mee Pyat (power outage) schedule in Yangon?",
         faqA1: "YESC divides Yangon townships into rotational groups (Group A and Group B). Power alternates every 4 hours between 05:00 and 21:00. Overnight from 21:00 to 05:00, all groups have continuous power with No Loadshed. Use this live tracker to view your group's countdown and daily timetable.",
         faqQ2: "What are Yangon Electric Breakout hours according to YESC & EPC?",
-        faqA2: "Under the official YESC plan, daylight electric breakouts rotate in 4-hour slots: 05:00 - 09:00, 09:00 - 13:00, 13:00 - 17:00, and 17:00 - 21:00. Check the 24-Hour Overview bar to see whether your group has electricity available or a scheduled outage.",
+        faqA2: "Under the official YESC plan, daylight electric breakouts rotate in 4-hour slots: 05:00 - 09:00, 09:00 - 13:00, 13:00 - 17:00, and 17:00 - 21:00. If your power is ON at 5:00 PM (17:00 - 21:00), it continues into the 21:00 - 05:00 overnight No Loadshed slot so electricity stays ON after 9:00 PM. Check the 24-Hour Overview bar to see your group's live status.",
         faqQ3: "What is the difference between Yangon EPC and YESC?",
         faqA3: "Yangon residents commonly refer to local electricity offices and electricity supply as 'EPC' (Electricity Supply Enterprise). Officially, electricity in Yangon Region is distributed and managed by YESC (Yangon Electricity Supply Corporation). Both terms refer to Yangon's municipal electricity provider.",
         faqQ4: "How to report an emergency electric breakout or fallen power lines in Yangon?",
@@ -240,7 +241,7 @@ const I18N = {
         guideStep1Title: "အချိန်မရွေး ပြောင်းလဲနိုင်ခြင်း",
         guideStep1Desc: "မျက်နှာပြင် အပေါ်ဘက်ရှိ Group A / Group B ခလုတ်များကို နှိပ်ပြီး မိမိနှစ်သက်ရာ အုပ်စုသို့ အချိန်မရွေး ပြောင်းလဲကြည့်ရှုနိုင်ပါသည်။",
         guideStep2Title: "၄ နာရီစီ အလှည့်ကျ စနစ်",
-        guideStep2Desc: "နံနက် ၀၅:၀၀ မှ ည ၂၁:၀၀ အထိ ၄ နာရီစီ အလှည့်ကျ မီးပေးဝေပြီး၊ ည ၂၁:၀၀ မှ နံနက် ၀၅:၀၀ အထိ အုပ်စုအားလုံး မီးမပျက်ပါ (No Loadshed)။",
+        guideStep2Desc: "နံနက် ၀၅:၀၀ မှ ည ၂၁:၀၀ အထိ ၄ နာရီစီ အလှည့်ကျ မီးပေးဝေပြီး၊ ည ၂၁:၀၀ မှ နံနက် ၀၅:၀၀ အထိ အုပ်စုအားလုံး မီးမပျက်ပါ (No Loadshed)။ ညနေ ၅ နာရီ (၁၇:၀၀ - ၂၁:၀၀) တွင် မီးလာပါက ည ၉ နာရီနောက်ပိုင်းတွင်လည်း ညလုံးပေါက် မီးဆက်လက်ရရှိနေမည် ဖြစ်ပါသည်။",
         guideStep3Title: "မိမိအုပ်စု သိရှိနိုင်မည့် နည်းလမ်း",
         guideStep3Desc: "သင့်အိမ်တွင် မီးလာနေချိန် ဤဝဘ်ဆိုက်တွင် 'မီးရရှိနေပါသည်' ပြသနေသော အုပ်စုကို စစ်ဆေးကြည့်ပါ။",
         guideQuickLabel: "အုပ်စု စမ်းသပ်ရွေးချယ်ရန်:",
@@ -256,6 +257,7 @@ const I18N = {
         statusSubOn: "သင့်အုပ်စုအတွက် သတ်မှတ်ထားသော မီးလာချိန် ဖြစ်ပါသည်။",
         statusSubOff: "သင့်အုပ်စုအတွက် သတ်မှတ်ထားသော မီးပျက်ချိန် ဖြစ်ပါသည်။",
         statusSubNoLoadshed: "ညဉ့်ပိုင်း (၂၁:၀၀ မှ ၀၅:၀၀): အုပ်စုအားလုံး No Loadshed ဓာတ်အား ရရှိနေပါသည်!",
+        statusSubContinuesNight: "ယခု မီးလာနေပြီး ည ၉ နာရီနောက်ပိုင်းတွင်လည်း ညလုံးပေါက် မီးမပျက်သည့် No Loadshed အချိန်နှင့် ဆက်သွားပါမည်။",
         countdownUntilOff: "မီးပြန်ပျက်ရန် ကျန်ရှိချိန်",
         countdownUntilOn: "မီးပြန်လာရန် ကျန်ရှိချိန်",
         timelineTitle: "၂၄ နာရီ မီးပေးဝေမှု အနှစ်ချုပ်",
@@ -294,7 +296,7 @@ const I18N = {
         faqQ1: "ရန်ကုန် မီးပျက်ချိန် (Mee Pyt / Mee Pyat) ဇယားကို မည်သို့ စစ်ဆေးနိုင်သနည်း?",
         faqA1: "YESC မှ ရန်ကုန်မြို့နယ်များကို အုပ်စု A နှင့် အုပ်စု B ဟူ၍ ခွဲခြားထားပြီး နံနက် ၀၅:၀၀ မှ ည ၂၁:၀၀ အထိ ၄ နာရီစီ အလှည့်ကျ မီးပေးဝေပါသည်။ ညဉ့် ၂၁:၀၀ မှ နံနက် ၀၅:၀၀ အထိ အုပ်စုအားလုံး မီးမပျက်ပါ (No Loadshed)။ ဤဝဘ်ဆိုက်တွင် သင့်အုပ်စုကို ရွေးချယ်၍ မီးလာချိန်နှင့် မီးပျက်ချိန်များကို တိုက်ရိုက် ကြည့်ရှုနိုင်ပါသည်။",
         faqQ2: "YESC နှင့် EPC မီးပျက်ချိန် (Electric Breakout) နာရီများမှာ မည်သည့်အချိန်များ ဖြစ်သနည်း?",
-        faqA2: "တရားဝင် အချိန်ဇယားအရ နေ့ခင်းပိုင်းတွင် ၀၅:၀၀ - ၀၉:၀၀၊ ၀၉:၀၀ - ၁၃:၀၀၊ ၁၃:၀၀ - ၁၇:၀၀ နှင့် ၁၇:၀၀ - ၂၁:၀၀ ဟူ၍ ၄ နာရီစီ အလှည့်ကျ ပေးဝေပါသည်။ အထက်ပါ ၂၄ နာရီ အနှစ်ချုပ်ဘားတွင် သင့်အုပ်စု မီးရရှိမည့်အချိန်နှင့် မီးပျက်မည့်အချိန်များကို အလွယ်တကူ စစ်ဆေးနိုင်ပါသည်။",
+        faqA2: "တရားဝင် အချိန်ဇယားအရ နေ့ခင်းပိုင်းတွင် ၀၅:၀၀ - ၀၉:၀၀၊ ၀၉:၀၀ - ၁၃:၀၀၊ ၁၃:၀၀ - ၁၇:၀၀ နှင့် ၁၇:၀၀ - ၂၁:၀၀ ဟူ၍ ၄ နာရီစီ အလှည့်ကျ ပေးဝေပါသည်။ ညနေ ၅ နာရီ (၁၇:၀၀ - ၂၁:၀၀) တွင် မီးလာနေပါက ည ၂၁:၀၀ နောက်ပိုင်း No Loadshed ညလုံးပေါက်ချိန်နှင့် ဆက်သွားသဖြင့် ည ၉ နာရီကျော်ထိ မီးဆက်လက်ရရှိနေမည်ဖြစ်ပါသည်။ အထက်ပါ ၂၄ နာရီ အနှစ်ချုပ်ဘားတွင် သင့်အုပ်စု မီးရရှိမည့်အချိန်နှင့် မီးပျက်မည့်အချိန်များကို အလွယ်တကူ စစ်ဆေးနိုင်ပါသည်။",
         faqQ3: "ရန်ကုန် EPC နှင့် YESC အခေါ်အဝေါ် ကွာခြားချက်မှာ အဘယ်နည်း?",
         faqA3: "ပြည်သူလူထုအနေဖြင့် မြို့နယ် လျှပ်စစ်ရုံးနှင့် မီးလိုင်းများကို အလွယ်တကူ 'အီးပီစီ' (EPC) ဟု အသုံးများကြပြီး၊ ရန်ကုန်တိုင်းအတွင်း တရားဝင် ဓာတ်အားပေးဝေသော ဌာနမှာ YESC (ရန်ကုန် လျှပ်စစ်ဓာတ်အားပေးရေးကော်ပိုရေးရှင်း) ဖြစ်ပါသည်။ အခေါ်အဝေါ် ကွဲပြားသော်လည်း တူညီသော လျှပ်စစ်ဓာတ်အားပေးစနစ်ကို ရည်ညွှန်းခြင်း ဖြစ်ပါသည်။",
         faqQ4: "အရေးပေါ် မီးပျက်ခြင်း (Electric Breakout) နှင့် ဓာတ်ကြိုး ချို့ယွင်းမှုများအတွက် မည်သည့်နေရာသို့ ဆက်သွယ်ရမည်နည်း?",
@@ -853,6 +855,26 @@ function parseTimeSlot(timeStr, baseDateObj) {
 }
 
 /**
+ * Calculates exact start Date and end Date objects for a slot relative to its base schedule date
+ */
+function getSlotTimeRange(slot, baseDate) {
+    const [sH, sM] = slot.start.split(":").map(Number);
+    const [eH, eM] = slot.end.split(":").map(Number);
+
+    const startObj = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), sH, sM, 0, 0);
+    if (sH < 5) {
+        startObj.setDate(startObj.getDate() + 1);
+    }
+
+    const endObj = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), eH, eM, 0, 0);
+    if (eH <= 5 || slot.start > slot.end) {
+        endObj.setDate(endObj.getDate() + 1);
+    }
+
+    return { startObj, endObj };
+}
+
+/**
  * Checks if target group has power at specific Myanmar Date/Time under active version
  */
 function checkPowerAvailability(group, mmDateObj) {
@@ -897,51 +919,140 @@ function checkPowerAvailability(group, mmDateObj) {
                 hasPower: activeGroups.includes(group),
                 slotIndex: i,
                 currentSlot: slot,
-                isNoLoadshed: slot.isNoLoadshed || false
+                isNoLoadshed: slot.isNoLoadshed || false,
+                adjustedDateObj: adjustedDateObj
             };
         }
     }
 
-    return { hasPower: false, slotIndex: 0, currentSlot: config.timeSlots[0], isNoLoadshed: false };
+    return { hasPower: false, slotIndex: 0, currentSlot: config.timeSlots[0], isNoLoadshed: false, adjustedDateObj: adjustedDateObj };
 }
 
 /**
- * Computes exact countdown seconds and target event under active version
+ * Computes exact countdown seconds and target event under active version.
+ * Accurately tracks contiguous power slots (e.g., if power is ON at 5:00 PM,
+ * it rolls seamlessly through the overnight 21:00 - 05:00 No-Loadshed slot).
  */
 function calculateCountdown(group) {
     const config = SCHEDULE_VERSIONS[currentVersionId];
     const mmNow = getMyanmarTime();
-    const { hasPower, slotIndex, currentSlot, isNoLoadshed } = checkPowerAvailability(group, mmNow);
+    const { hasPower, slotIndex, currentSlot, isNoLoadshed, adjustedDateObj } = checkPowerAvailability(group, mmNow);
 
     let targetTimeObj;
+    let blockStartObj;
+    let totalWindowSeconds = 4 * 3600;
 
     if (hasPower) {
-        // Countdown until current active slot ends
-        let endObj = parseTimeSlot(currentSlot.end, mmNow);
-        if (currentSlot.end <= currentSlot.start && mmNow.getHours() >= 21) {
-            endObj.setDate(endObj.getDate() + 1);
-        }
-        targetTimeObj = endObj;
-    } else {
-        // Countdown until next available slot
-        let foundNext = false;
-        for (let dayStep = 0; dayStep < 3 && !foundNext; dayStep++) {
-            const testDate = new Date(mmNow);
-            testDate.setDate(testDate.getDate() + dayStep);
-            const pattern = getSchedulePatternForDate(formatDateKey(testDate));
-            const startIdx = (dayStep === 0) ? (slotIndex + 1) % config.timeSlots.length : 0;
+        // Continuous power-on tracking:
+        // Find when electricity actually turns OFF by stepping forward through all contiguous active slots
+        const { startObj: currentBlockStart, endObj: currentBlockEnd } = getSlotTimeRange(currentSlot, adjustedDateObj);
+        blockStartObj = currentBlockStart;
+        targetTimeObj = currentBlockEnd;
 
-            for (let idx = startIdx; idx < config.timeSlots.length; idx++) {
-                const groups = pattern[idx].split("+");
-                if (groups.includes(group)) {
-                    let nextStart = parseTimeSlot(config.timeSlots[idx].start, testDate);
-                    if (nextStart > mmNow) {
-                        targetTimeObj = nextStart;
-                        foundNext = true;
-                        break;
-                    }
-                }
+        // Step backward to find when this uninterrupted power-on block started
+        let backSlotIdx = slotIndex;
+        let backDate = new Date(adjustedDateObj);
+        for (let step = 0; step < config.timeSlots.length * 2; step++) {
+            let prevSlotIdx = backSlotIdx - 1;
+            let prevDate = new Date(backDate);
+            if (prevSlotIdx < 0) {
+                prevSlotIdx = config.timeSlots.length - 1;
+                prevDate.setDate(prevDate.getDate() - 1);
             }
+            const prevPattern = getSchedulePatternForDate(formatDateKey(prevDate));
+            const prevGroups = prevPattern[prevSlotIdx].split("+");
+            if (prevGroups.includes(group)) {
+                const prevSlot = config.timeSlots[prevSlotIdx];
+                const { startObj: prevStart } = getSlotTimeRange(prevSlot, prevDate);
+                blockStartObj = prevStart;
+                backSlotIdx = prevSlotIdx;
+                backDate = prevDate;
+            } else {
+                break;
+            }
+        }
+
+        // Step forward to find when electricity will turn OFF
+        let forwardSlotIdx = slotIndex;
+        let forwardDate = new Date(adjustedDateObj);
+        for (let step = 0; step < config.timeSlots.length * 2; step++) {
+            let nextSlotIdx = forwardSlotIdx + 1;
+            let nextDate = new Date(forwardDate);
+            if (nextSlotIdx >= config.timeSlots.length) {
+                nextSlotIdx = 0;
+                nextDate.setDate(nextDate.getDate() + 1);
+            }
+            const nextPattern = getSchedulePatternForDate(formatDateKey(nextDate));
+            const nextGroups = nextPattern[nextSlotIdx].split("+");
+            if (nextGroups.includes(group)) {
+                // Next slot also has electricity for this group!
+                const nextSlot = config.timeSlots[nextSlotIdx];
+                const { endObj: nextEnd } = getSlotTimeRange(nextSlot, nextDate);
+                targetTimeObj = nextEnd;
+                forwardSlotIdx = nextSlotIdx;
+                forwardDate = nextDate;
+            } else {
+                // Next slot is an outage for this group; power turns off at targetTimeObj
+                break;
+            }
+        }
+
+        if (blockStartObj && targetTimeObj) {
+            totalWindowSeconds = Math.max(3600, Math.floor((targetTimeObj - blockStartObj) / 1000));
+        }
+    } else {
+        // Continuous outage tracking:
+        // Find when electricity turns ON by searching forward to the first available slot
+        const { startObj: currentBlockStart } = getSlotTimeRange(currentSlot, adjustedDateObj);
+        blockStartObj = currentBlockStart;
+
+        // Step backward to find when this outage began
+        let backSlotIdx = slotIndex;
+        let backDate = new Date(adjustedDateObj);
+        for (let step = 0; step < config.timeSlots.length * 2; step++) {
+            let prevSlotIdx = backSlotIdx - 1;
+            let prevDate = new Date(backDate);
+            if (prevSlotIdx < 0) {
+                prevSlotIdx = config.timeSlots.length - 1;
+                prevDate.setDate(prevDate.getDate() - 1);
+            }
+            const prevPattern = getSchedulePatternForDate(formatDateKey(prevDate));
+            const prevGroups = prevPattern[prevSlotIdx].split("+");
+            if (!prevGroups.includes(group)) {
+                const prevSlot = config.timeSlots[prevSlotIdx];
+                const { startObj: prevStart } = getSlotTimeRange(prevSlot, prevDate);
+                blockStartObj = prevStart;
+                backSlotIdx = prevSlotIdx;
+                backDate = prevDate;
+            } else {
+                break;
+            }
+        }
+
+        // Search forward for the first slot with power
+        let forwardSlotIdx = slotIndex;
+        let forwardDate = new Date(adjustedDateObj);
+        for (let step = 0; step < config.timeSlots.length * 3; step++) {
+            let nextSlotIdx = forwardSlotIdx + 1;
+            let nextDate = new Date(forwardDate);
+            if (nextSlotIdx >= config.timeSlots.length) {
+                nextSlotIdx = 0;
+                nextDate.setDate(nextDate.getDate() + 1);
+            }
+            const nextPattern = getSchedulePatternForDate(formatDateKey(nextDate));
+            const nextGroups = nextPattern[nextSlotIdx].split("+");
+            if (nextGroups.includes(group)) {
+                const nextSlot = config.timeSlots[nextSlotIdx];
+                const { startObj: nextStart } = getSlotTimeRange(nextSlot, nextDate);
+                targetTimeObj = nextStart;
+                break;
+            }
+            forwardSlotIdx = nextSlotIdx;
+            forwardDate = nextDate;
+        }
+
+        if (blockStartObj && targetTimeObj) {
+            totalWindowSeconds = Math.max(3600, Math.floor((targetTimeObj - blockStartObj) / 1000));
         }
     }
 
@@ -960,7 +1071,9 @@ function calculateCountdown(group) {
         hours,
         minutes,
         seconds,
-        totalSeconds
+        totalSeconds,
+        totalWindowSeconds,
+        targetTimeObj
     };
 }
 
@@ -1534,9 +1647,9 @@ function renderCalendarUI(monthIndex = calendarActiveMonth) {
 
         let chipHtml = '';
         if (has5amPower) {
-            chipHtml = `<span class="cal-power-chip slot-5am"><span class="cal-chip-time">05:00</span><span class="cal-chip-status"> ${t.calendarPowerOnBadge}</span></span>`;
+            chipHtml = `<span class="cal-power-chip slot-5am"><span class="cal-chip-time">05:00</span><span class="cal-chip-status">${t.calendarPowerOnBadge}</span></span>`;
         } else if (has9amPower) {
-            chipHtml = `<span class="cal-power-chip slot-9am"><span class="cal-chip-time">09:00</span><span class="cal-chip-status"> ${t.calendarPowerOnBadge}</span></span>`;
+            chipHtml = `<span class="cal-power-chip slot-9am"><span class="cal-chip-time">09:00</span><span class="cal-chip-status">${t.calendarPowerOnBadge}</span></span>`;
         }
 
         cell.innerHTML = `
@@ -1580,7 +1693,7 @@ function updateFullDisplay() {
 
     const mmNow = getMyanmarTime();
     const t = I18N[currentLang];
-    const { hasPower, isNoLoadshed, currentSlot, hours, minutes, seconds, totalSeconds } = calculateCountdown(currentGroup);
+    const { hasPower, isNoLoadshed, currentSlot, hours, minutes, seconds, totalSeconds, totalWindowSeconds } = calculateCountdown(currentGroup);
 
     // 1. Status Card
     const statusCard = document.getElementById('status-card');
@@ -1593,7 +1706,13 @@ function updateFullDisplay() {
             statusCard.className = 'card status-card status-on area-status';
             statusPill.innerHTML = `<i class="fas fa-bolt" aria-hidden="true"></i> <span>${t.statusOn}</span>`;
             statusText.textContent = `${t.groupLabel} ${currentGroup} - ${t.statusOn}`;
-            statusSub.textContent = isNoLoadshed ? t.statusSubNoLoadshed : t.statusSubOn;
+            if (currentSlot && currentSlot.start === "17:00" && currentSlot.end === "21:00") {
+                statusSub.textContent = t.statusSubContinuesNight || t.statusSubOn;
+            } else if (isNoLoadshed) {
+                statusSub.textContent = t.statusSubNoLoadshed;
+            } else {
+                statusSub.textContent = t.statusSubOn;
+            }
         } else {
             statusCard.className = 'card status-card status-off area-status';
             statusPill.innerHTML = `<i class="fas fa-power-off" aria-hidden="true"></i> <span>${t.statusOff}</span>`;
@@ -1623,9 +1742,9 @@ function updateFullDisplay() {
     if (digitsEl) digitsEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
     if (progressFill) {
-        const maxWindow = hasPower
-            ? ((currentSlot && currentSlot.hours) ? (currentSlot.hours * 3600) : (4 * 3600))
-            : (4 * 3600);
+        const maxWindow = (totalWindowSeconds && totalWindowSeconds > 0)
+            ? totalWindowSeconds
+            : (hasPower ? ((currentSlot && currentSlot.hours) ? (currentSlot.hours * 3600) : (4 * 3600)) : (4 * 3600));
         const progressPct = Math.max(0, Math.min(100, ((maxWindow - totalSeconds) / maxWindow) * 100));
         progressFill.style.width = `${progressPct}%`;
         progressFill.setAttribute('aria-valuenow', Math.round(progressPct));

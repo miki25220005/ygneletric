@@ -1989,31 +1989,43 @@ html.dark .calendar-day-cell.is-today {
 }
 
 .cal-power-chip {
-    font-size: 0.6875rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.18rem 0.25rem;
+    padding: 0.22rem 0.45rem;
     border-radius: var(--radius-sm);
     width: 100%;
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: 1.2;
+    gap: 0.45rem; /* Clean, comfortable spacing between Hours and ON for Desktop & Tablet */
+    line-height: 1.25;
     letter-spacing: 0.02em;
 }
 
 .cal-chip-time {
     font-variant-numeric: tabular-nums;
     font-weight: 700;
+    font-size: 0.72rem;
 }
 
 .cal-chip-status {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.58rem;
-    opacity: 0.9;
+    padding: 0.08rem 0.35rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.48);
     text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+html.dark .cal-chip-status {
+    background-color: rgba(255, 255, 255, 0.14);
 }
 
 .cal-power-chip.slot-5am {
@@ -2078,10 +2090,11 @@ dialog#safety-alert-modal {
         font-size: 0.65rem;
         padding: 0.18rem 0.1rem;
         border-radius: 4px;
+        gap: 0;
     }
 
     .cal-chip-status {
-        display: none; /* Hide status text on mobile so hours (05:00, 09:00) fit cleanly without truncation */
+        display: none !important; /* Hide status text on mobile so hours (05:00, 09:00) fit cleanly without truncation */
     }
 
     .calendar-weekdays {
